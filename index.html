@@ -17,6 +17,34 @@
             color: #1d1c1d;
             line-height: 1.6;
             overflow-x: hidden;
+            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="%234a154b" opacity="0.3"/><circle cx="12" cy="12" r="2" fill="%234a154b"/></svg>') 12 12, auto;
+        }
+
+        /* Fun Cursor Effects */
+        .cursor-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: rgba(74, 21, 75, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        /* Easter Egg - Konami Code Effect */
+        .konami-mode {
+            animation: rainbow-bg 2s linear infinite;
+        }
+
+        @keyframes rainbow-bg {
+            0% { background: linear-gradient(135deg, #ff0000 0%, #ffffff 100%); }
+            16% { background: linear-gradient(135deg, #ff8000 0%, #ffffff 100%); }
+            33% { background: linear-gradient(135deg, #ffff00 0%, #ffffff 100%); }
+            50% { background: linear-gradient(135deg, #80ff00 0%, #ffffff 100%); }
+            66% { background: linear-gradient(135deg, #00ff80 0%, #ffffff 100%); }
+            83% { background: linear-gradient(135deg, #0080ff 0%, #ffffff 100%); }
+            100% { background: linear-gradient(135deg, #8000ff 0%, #ffffff 100%); }
         }
 
         .container {
@@ -107,9 +135,110 @@
             animation: pulse 4s ease-in-out infinite;
         }
 
+        /* Floating Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(74, 21, 75, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(2n) {
+            background: rgba(16, 185, 129, 0.3);
+            animation-delay: -2s;
+            animation-duration: 8s;
+        }
+
+        .particle:nth-child(3n) {
+            background: rgba(79, 70, 229, 0.3);
+            animation-delay: -4s;
+            animation-duration: 10s;
+        }
+
         @keyframes pulse {
             0%, 100% { opacity: 0.5; }
             50% { opacity: 0.8; }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-40px) rotate(180deg);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translateY(-20px) rotate(270deg);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes wiggle {
+            0%, 7% {
+                transform: rotateZ(0);
+            }
+            15% {
+                transform: rotateZ(-15deg);
+            }
+            20% {
+                transform: rotateZ(10deg);
+            }
+            25% {
+                transform: rotateZ(-10deg);
+            }
+            30% {
+                transform: rotateZ(6deg);
+            }
+            35% {
+                transform: rotateZ(-4deg);
+            }
+            40%, 100% {
+                transform: rotateZ(0);
+            }
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
         }
 
         .hero-content {
@@ -178,8 +307,9 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(74, 21, 75, 0.4);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(74, 21, 75, 0.6);
+            animation: wiggle 1s ease-in-out;
         }
 
         .btn-secondary {
@@ -190,8 +320,10 @@
 
         .btn-secondary:hover {
             background: #4a154b;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(74, 21, 75, 0.2);
+            color: white;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(74, 21, 75, 0.4);
+            animation: bounce 0.8s ease-in-out;
         }
 
         /* Sections */
@@ -258,6 +390,35 @@
             font-size: 0.9rem;
             font-weight: 500;
             border: 1px solid rgba(74, 21, 75, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag:hover {
+            background: rgba(74, 21, 75, 0.8);
+            color: white;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(74, 21, 75, 0.3);
+            animation: wiggle 0.6s ease-in-out;
+        }
+
+        .skill-tag::before {
+            content: '⭐';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover::before {
+            top: -15px;
+            opacity: 1;
+            animation: bounce 0.6s ease-in-out;
         }
 
         /* Homelab Section */
@@ -289,9 +450,14 @@
         }
 
         .homelab-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(79, 70, 229, 0.3);
+            transform: translateY(-8px) rotate(2deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(79, 70, 229, 0.5);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .homelab-card:hover h3 {
+            animation: bounce 1s ease-in-out;
         }
 
         .homelab-card h3 {
@@ -321,23 +487,49 @@
         }
 
         /* Projects Section */
+        #projects {
+            background: linear-gradient(135deg, rgba(74, 21, 75, 0.02) 0%, rgba(16, 185, 129, 0.02) 100%);
+            position: relative;
+        }
+
+        #projects::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(74, 21, 75, 0.05) 0%, transparent 50%);
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .project-card {
-            background: rgba(30, 41, 59, 0.5);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.98) 100%);
             border-radius: 15px;
             overflow: hidden;
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            border: 2px solid rgba(74, 21, 75, 0.2);
             transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(74, 21, 75, 0.3);
+            border-color: rgba(74, 21, 75, 0.5);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(74, 21, 75, 0.05) 100%);
+            animation: wiggle 2s ease-in-out;
+        }
+
+        .project-card:hover .project-image {
+            animation: bounce 1s ease-in-out;
+            transform: scale(1.1);
         }
 
         .project-image {
@@ -357,12 +549,14 @@
         .project-content h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: #e2e8f0;
+            color: #1d1c1d;
+            font-weight: 700;
         }
 
         .project-content p {
-            color: #94a3b8;
+            color: #4a5568;
             margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
         .project-links {
@@ -373,12 +567,19 @@
         .project-links a {
             color: #4a154b;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            padding: 8px 16px;
+            border: 2px solid #4a154b;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .project-links a:hover {
-            color: #350d36;
+            background: #4a154b;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 21, 75, 0.3);
         }
 
         /* Contact Section */
@@ -474,6 +675,9 @@
     </style>
 </head>
 <body>
+    <!-- Floating Particles Background -->
+    <div class="particles" id="particles"></div>
+
     <header>
         <nav class="container">
             <div class="logo">KNIGHT'S LAB</div>
@@ -576,13 +780,13 @@
                         </div>
                     </div>
                     <div class="project-card">
-                        <div class="project-image">🚀</div>
+                        <div class="project-image">🍽️</div>
                         <div class="project-content">
-                            <h3>Kubernetes Homelab Cluster</h3>
-                            <p>A fully automated K3s cluster with GitOps workflows, monitoring, and service mesh integration.</p>
+                            <h3>Meal Planning Website</h3>
+                            <p>A comprehensive meal planning application with recipe management, grocery list generation, and nutritional tracking features.</p>
                             <div class="project-links">
-                                <a href="#">View Code</a>
-                                <a href="#">Live Demo</a>
+                                <a href="https://github.com/hbhetaria2611/meal-planning">View Code</a>
+                                <a href="https://meal.hnbhetaria.com">Live Demo</a>
                             </div>
                         </div>
                     </div>
@@ -696,6 +900,156 @@
             setTimeout(() => {
                 typeWriter(subtitle, originalText, 50);
             }, 1500);
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Cursor trail effect
+        let cursorTrails = [];
+        function createCursorTrail(e) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            document.body.appendChild(trail);
+
+            cursorTrails.push(trail);
+            if (cursorTrails.length > 10) {
+                const oldTrail = cursorTrails.shift();
+                oldTrail.remove();
+            }
+
+            setTimeout(() => {
+                trail.style.transform = 'scale(0)';
+                trail.style.opacity = '0';
+            }, 100);
+
+            setTimeout(() => {
+                trail.remove();
+            }, 500);
+        }
+
+        // Fun click effects
+        function createClickEffect(e) {
+            const clickEffect = document.createElement('div');
+            clickEffect.innerHTML = ['💥', '⭐', '✨', '🎉', '🔥'][Math.floor(Math.random() * 5)];
+            clickEffect.style.position = 'fixed';
+            clickEffect.style.left = e.clientX + 'px';
+            clickEffect.style.top = e.clientY + 'px';
+            clickEffect.style.fontSize = '20px';
+            clickEffect.style.pointerEvents = 'none';
+            clickEffect.style.zIndex = '10000';
+            clickEffect.style.animation = 'bounce 1s ease-out forwards';
+            document.body.appendChild(clickEffect);
+
+            setTimeout(() => {
+                clickEffect.style.opacity = '0';
+                clickEffect.style.transform = 'translateY(-50px)';
+            }, 200);
+
+            setTimeout(() => {
+                clickEffect.remove();
+            }, 1000);
+        }
+
+        // Easter egg: Konami code
+        let konamiCode = [];
+        const correctCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+
+        function handleKonamiCode(e) {
+            konamiCode.push(e.code);
+            if (konamiCode.length > correctCode.length) {
+                konamiCode.shift();
+            }
+
+            if (JSON.stringify(konamiCode) === JSON.stringify(correctCode)) {
+                document.body.classList.add('konami-mode');
+
+                // Add fun message
+                const message = document.createElement('div');
+                message.innerHTML = '🎉 KONAMI CODE ACTIVATED! 🎉';
+                message.style.cssText = `
+                    position: fixed; top: 50%; left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: rgba(0,0,0,0.8); color: white;
+                    padding: 20px; border-radius: 10px;
+                    z-index: 10001; font-size: 24px;
+                    text-align: center; animation: bounce 1s ease-out;
+                `;
+                document.body.appendChild(message);
+
+                setTimeout(() => {
+                    document.body.classList.remove('konami-mode');
+                    message.remove();
+                    konamiCode = [];
+                }, 5000);
+            }
+        }
+
+        // Fun shake effect for logo on multiple clicks
+        let logoClickCount = 0;
+        function logoShakeEffect() {
+            const logo = document.querySelector('.logo');
+            logoClickCount++;
+
+            if (logoClickCount >= 5) {
+                logo.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    logo.style.animation = '';
+                    logoClickCount = 0;
+                }, 500);
+            }
+        }
+
+        // Initialize fun effects
+        window.addEventListener('load', () => {
+            createParticles();
+
+            // Add event listeners
+            document.addEventListener('mousemove', createCursorTrail);
+            document.addEventListener('click', createClickEffect);
+            document.addEventListener('keydown', handleKonamiCode);
+            document.querySelector('.logo').addEventListener('click', logoShakeEffect);
+
+            // Add fun hover sound effect simulation (visual feedback)
+            const skillTags = document.querySelectorAll('.skill-tag');
+            skillTags.forEach(tag => {
+                tag.addEventListener('mouseenter', () => {
+                    tag.style.textShadow = '0 0 10px rgba(74, 21, 75, 0.8)';
+                });
+                tag.addEventListener('mouseleave', () => {
+                    tag.style.textShadow = 'none';
+                });
+            });
+
+            // Add bounce effect to project cards on scroll into view
+            const projectCards = document.querySelectorAll('.project-card, .homelab-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'bounce 0.6s ease-out';
+                        setTimeout(() => {
+                            entry.target.style.animation = '';
+                        }, 600);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            projectCards.forEach(card => observer.observe(card));
         });
     </script>
 </body>
