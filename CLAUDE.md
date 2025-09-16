@@ -88,6 +88,7 @@ Projects are defined in the `#projects` section around line 740-780. Each projec
 1. **HMAC Implementation & Security Analysis**: Cryptographic security analysis (GitHub: hbhetaria2611/HMAC)
 2. **Meal Planning Website**: Full-stack application (GitHub: hbhetaria2611/meal-planning, Live: meal.hnbhetaria.com)
 3. **Cloudflare Analytics Dashboard**: Modern Grafana-style dashboard for monitoring Cloudflare analytics in real-time (GitHub: hbhetaria2611/cloudflare-analytics-dashboard-workers, Live: analytics.hnbhetaria.com)
+4. **Homelab Monitoring Stack**: Comprehensive monitoring solution for distributed homelab setups using Grafana, Prometheus, and AlertManager (GitHub: hbhetaria2611/home-lab-management)
 
 ### Skills Management
 Skills are individual `<span class="skill-tag">` elements in the About section with interactive hover effects including star animations and color transitions.
