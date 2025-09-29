@@ -25,7 +25,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knight's Portfolio & Homelab</title>
+    <title>Harsh Bhetaria - Lead Security Engineer</title>
     <style>
         * {
             margin: 0;
@@ -374,6 +374,140 @@
             font-size: 1.1rem;
         }
 
+        /* About Highlights */
+        .about-highlights {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .highlight-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(135deg, rgba(74, 21, 75, 0.05) 0%, rgba(255, 255, 255, 0.95) 100%);
+            padding: 1.2rem;
+            border-radius: 12px;
+            border-left: 4px solid #4a154b;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .highlight-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(74, 21, 75, 0.15);
+            background: linear-gradient(135deg, rgba(74, 21, 75, 0.08) 0%, rgba(255, 255, 255, 1) 100%);
+        }
+        .highlight-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4a154b, #350d36);
+            border-radius: 50%;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        .highlight-card:hover .highlight-icon {
+            filter: grayscale(0%);
+            animation: pulse 1s ease-in-out;
+        }
+        .highlight-content h4 {
+            margin: 0 0 0.3rem 0;
+            color: #2c3e50;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .highlight-content p {
+            margin: 0;
+            color: #616061;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Clickable Card Enhancements */
+        .clickable-card {
+            cursor: pointer;
+            position: relative;
+        }
+        .clickable-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(135deg, #4a154b, #350d36);
+            border-radius: 0 12px 12px 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .clickable-card:hover::after {
+            opacity: 1;
+        }
+        .click-hint {
+            display: block;
+            color: #4a154b;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .clickable-card:hover .click-hint {
+            opacity: 1;
+        }
+
+        /* Expandable Details */
+        .highlight-details {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(74, 21, 75, 0.1);
+            animation: slideDown 0.3s ease-out;
+        }
+        .highlight-details.expanded {
+            display: block;
+        }
+        .highlight-details h5 {
+            margin: 0 0 0.8rem 0;
+            color: #4a154b;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .highlight-details ul {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+        }
+        .highlight-details li {
+            margin-bottom: 0.6rem;
+            padding-left: 0;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .highlight-details p {
+            margin-top: 1rem;
+            color: #4a154b;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                max-height: 500px;
+                transform: translateY(0);
+            }
+        }
+
         .skills {
             display: flex;
             flex-wrap: wrap;
@@ -529,6 +663,34 @@
         .project-card:hover .project-image {
             animation: bounce 1s ease-in-out;
             transform: scale(1.05);
+        }
+
+        /* Professional Project Styling */
+        .professional-card {
+            border-color: rgba(74, 21, 75, 0.3);
+            background: linear-gradient(135deg, rgba(74, 21, 75, 0.02) 0%, rgba(255, 255, 255, 0.98) 100%);
+        }
+        .professional-card:hover {
+            border-color: rgba(74, 21, 75, 0.6);
+            background: linear-gradient(135deg, rgba(74, 21, 75, 0.08) 0%, rgba(255, 255, 255, 1) 100%);
+        }
+        .professional-card .project-image {
+            background: linear-gradient(135deg, #4a154b, #350d36);
+        }
+        .project-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .metric {
+            background: linear-gradient(135deg, #4a154b, #350d36);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(74, 21, 75, 0.3);
         }
 
         .project-image {
@@ -709,8 +871,8 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="logo"><object data="github_profile_logo.svg" type="image/svg+xml" width="100" height="100"></object></div>
-                    <h1>Knight's Digital Domain</h1>
-                    <p class="subtitle">Security Engineer</p>
+                    <h1>Harsh Bhetaria</h1>
+                    <p class="subtitle">Lead Security Engineer</p>
                     <p class="description">
                         Welcome to my corner of the internet where I showcase my professional work and personal projects. 
                         Passionate about cybersecurity, infrastructure automation, and building secure, scalable solutions.
@@ -735,23 +897,88 @@
                     </div>
                     <div class="about-text">
                         <h3>Building Secure Infrastructure, One System at a Time</h3>
-                        <p>
-                            I'm a passionate technologist with expertise spanning cybersecurity, DevOps, and infrastructure automation. 
-                            By day, I work as a Security Engineer, designing secure systems, implementing security controls, and 
-                            ensuring robust protection across the entire technology stack. By night, I continue exploring 
-                            new technologies and security frameworks through personal projects and research.
-                        </p>
-                        <p>
-                            My journey in tech has taken me through various cybersecurity roles where I've gained deep experience in 
-                            threat detection, vulnerability assessment, and security architecture. This security-first mindset 
-                            now influences everything I build, ensuring that every system I design prioritizes security without compromising functionality.
-                        </p>
-                        <p>
-                            I'm particularly enthusiastic about homelab setups and self-hosted solutions. I've built my own secure infrastructure 
-                            including a personal password vault, comprehensive home automation system, and secure remote access using reverse 
-                            proxies with Cloudflare Access for robust user authentication. These projects allow me to experiment with 
-                            enterprise-grade security concepts in a controlled environment while maintaining complete control over my data and privacy.
-                        </p>
+
+                        <div class="about-highlights">
+                            <div class="highlight-card clickable-card" onclick="toggleCardDetails(this)" data-card="slack-role">
+                                <div class="highlight-icon">🛡️</div>
+                                <div class="highlight-content">
+                                    <h4>Lead Security Engineer @ Slack</h4>
+                                    <p>Proactive threat modeling & secure code review for millions of users</p>
+                                    <span class="click-hint">Click to learn more →</span>
+                                </div>
+                                <div class="highlight-details">
+                                    <h5>What I Do at Slack:</h5>
+                                    <ul>
+                                        <li>🔍 <strong>Proactive Security Engineering:</strong> Leading security initiatives across enterprise communication platform</li>
+                                        <li>🛡️ <strong>Threat Modeling:</strong> Designing security architecture for new features and products</li>
+                                        <li>📋 <strong>Code Reviews:</strong> Ensuring secure coding practices across development teams</li>
+                                        <li>🔒 <strong>Vulnerability Assessment:</strong> Identifying and mitigating security risks at scale</li>
+                                        <li>📊 <strong>Security Metrics:</strong> Building dashboards and tracking security KPIs</li>
+                                    </ul>
+                                    <p><em>3+ years of experience securing enterprise communication for millions of users worldwide</em></p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-card clickable-card" onclick="toggleCardDetails(this)" data-card="cissp-cert">
+                                <div class="highlight-icon">🏆</div>
+                                <div class="highlight-content">
+                                    <h4>CISSP Certified</h4>
+                                    <p>Expert in penetration testing, vulnerability assessment & cryptography</p>
+                                    <span class="click-hint">Click to learn more →</span>
+                                </div>
+                                <div class="highlight-details">
+                                    <h5>Cybersecurity Expertise:</h5>
+                                    <ul>
+                                        <li>🎯 <strong>Penetration Testing:</strong> Ethical hacking to identify vulnerabilities</li>
+                                        <li>🔐 <strong>Cryptography:</strong> Implementation of secure encryption protocols (AES, HMAC)</li>
+                                        <li>🌐 <strong>Network Security:</strong> Designing secure network architectures</li>
+                                        <li>🛡️ <strong>Application Security:</strong> Code analysis and secure development practices</li>
+                                        <li>📚 <strong>Continuous Learning:</strong> Staying current with emerging threats and security frameworks</li>
+                                    </ul>
+                                    <p><em>CISSP certification demonstrates mastery across 8 domains of cybersecurity</em></p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-card clickable-card" onclick="toggleCardDetails(this)" data-card="homelab">
+                                <div class="highlight-icon">🏠</div>
+                                <div class="highlight-content">
+                                    <h4>Homelab Enthusiast</h4>
+                                    <p>Self-hosted password vault, automation & secure remote access</p>
+                                    <span class="click-hint">Click to learn more →</span>
+                                </div>
+                                <div class="highlight-details">
+                                    <h5>My Homelab Infrastructure:</h5>
+                                    <ul>
+                                        <li>🔐 <strong>Password Vault:</strong> Self-hosted Bitwarden for complete password control</li>
+                                        <li>🏠 <strong>Home Automation:</strong> Smart home integration with privacy-first approach</li>
+                                        <li>🌐 <strong>Reverse Proxy:</strong> Cloudflare Access for secure remote connections</li>
+                                        <li>📊 <strong>Monitoring Stack:</strong> Grafana + Prometheus for infrastructure visibility</li>
+                                        <li>🐳 <strong>Containerization:</strong> Docker swarm for service orchestration</li>
+                                    </ul>
+                                    <p><em>Experimenting with enterprise security concepts in a controlled environment</em></p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-card clickable-card" onclick="toggleCardDetails(this)" data-card="philosophy">
+                                <div class="highlight-icon">🔍</div>
+                                <div class="highlight-content">
+                                    <h4>Security-First Mindset</h4>
+                                    <p>Every system designed with security as the foundation, not an afterthought</p>
+                                    <span class="click-hint">Click to learn more →</span>
+                                </div>
+                                <div class="highlight-details">
+                                    <h5>My Security Philosophy:</h5>
+                                    <ul>
+                                        <li>🏗️ <strong>Security by Design:</strong> Integrating security from the ground up, not bolting it on later</li>
+                                        <li>🔄 <strong>Continuous Improvement:</strong> Regular security assessments and iterative hardening</li>
+                                        <li>👥 <strong>Education First:</strong> Training teams to think security-first in every decision</li>
+                                        <li>⚖️ <strong>Risk-Based Approach:</strong> Balancing security controls with business functionality</li>
+                                        <li>🔍 <strong>Transparency:</strong> Open communication about security posture and improvements</li>
+                                    </ul>
+                                    <p><em>"Security is not a product, but a process" - Building resilient systems through thoughtful design</em></p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="skills" title="💡 Hint: Try right-clicking these skills for hidden tools">
                             <span class="skill-tag">Docker</span>
                             <span class="skill-tag">Kubernetes</span>
@@ -788,6 +1015,48 @@
                     <span style="font-size: 0.7rem; color: #666; font-weight: normal;">🔍 View source for hidden flags</span>
                 </h2>
                 <!-- flag{s0urc3_c0d3_r3v13w_m4st3r} -->
+
+                <h3 style="color: #4a154b; margin: 2rem 0 1rem 0; font-size: 1.3rem; border-bottom: 2px solid #4a154b; padding-bottom: 0.5rem;">🏢 Professional Experience</h3>
+                <div class="projects-grid professional-projects">
+                    <div class="project-card professional-card">
+                        <div class="project-image">🛡️</div>
+                        <div class="project-content">
+                            <h3>Proactive Security Engineering</h3>
+                            <p>Leading product security initiatives at Slack, focusing on proactive threat modeling, secure code review, and vulnerability assessment across enterprise communication platform serving millions of users.</p>
+                            <div class="project-metrics">
+                                <span class="metric">3+ years experience</span>
+                                <span class="metric">Enterprise scale</span>
+                                <span class="metric">Proactive security</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card professional-card">
+                        <div class="project-image">🔐</div>
+                        <div class="project-content">
+                            <h3>Application Security & Penetration Testing</h3>
+                            <p>Conducting comprehensive security assessments including penetration testing, vulnerability analysis, and application security reviews. Implementing security controls across cloud infrastructure and communication systems.</p>
+                            <div class="project-metrics">
+                                <span class="metric">CISSP Certified</span>
+                                <span class="metric">Penetration testing</span>
+                                <span class="metric">Vuln assessment</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card professional-card">
+                        <div class="project-image">🔒</div>
+                        <div class="project-content">
+                            <h3>Cryptography & Network Security</h3>
+                            <p>Designing and implementing cryptographic solutions and network security protocols. Expertise in encryption technologies, secure communication protocols, and privacy protection for enterprise platforms.</p>
+                            <div class="project-metrics">
+                                <span class="metric">Cryptography expert</span>
+                                <span class="metric">Network security</span>
+                                <span class="metric">Privacy protection</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #10b981; margin: 3rem 0 1rem 0; font-size: 1.3rem; border-bottom: 2px solid #10b981; padding-bottom: 0.5rem;">🚀 Personal Projects</h3>
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">🔐</div>
@@ -895,6 +1164,33 @@
                 }
             });
         });
+
+        // Toggle card details function
+        function toggleCardDetails(card) {
+            const details = card.querySelector('.highlight-details');
+            const clickHint = card.querySelector('.click-hint');
+
+            if (details.classList.contains('expanded')) {
+                // Collapse
+                details.classList.remove('expanded');
+                clickHint.textContent = 'Click to learn more →';
+                card.style.transform = '';
+            } else {
+                // First, collapse any other expanded cards
+                document.querySelectorAll('.highlight-details.expanded').forEach(expandedDetail => {
+                    const expandedCard = expandedDetail.closest('.highlight-card');
+                    const expandedHint = expandedCard.querySelector('.click-hint');
+                    expandedDetail.classList.remove('expanded');
+                    expandedHint.textContent = 'Click to learn more →';
+                    expandedCard.style.transform = '';
+                });
+
+                // Expand this card
+                details.classList.add('expanded');
+                clickHint.textContent = 'Click to collapse ↑';
+                card.style.transform = 'scale(1.02)';
+            }
+        }
 
         // Scroll animation observer
         const observerOptions = {

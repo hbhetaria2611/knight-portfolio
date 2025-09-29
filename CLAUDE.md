@@ -122,3 +122,10 @@ This is a cybersecurity professional's portfolio emphasizing:
 ### Security Features
 - **Bot Protection**: Cloudflare Turnstile integration for bot detection and protection
 - **Content Security**: No external content dependencies beyond Turnstile script
+- **Security Easter Eggs**: Hidden flags and console commands for security demonstrations (see HTML comments in index.html:4-15)
+
+## Important Instructions
+- **Single File Architecture**: Do not create additional files - everything belongs in `index.html`
+- **No Build Process**: This is intentional - the site deploys by simply serving the HTML file
+- **External Dependencies**: Avoid adding any - only Cloudflare Turnstile is acceptable
+- **Security Context**: This is a cybersecurity professional's portfolio with security-themed easter eggs
