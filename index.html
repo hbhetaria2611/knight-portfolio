@@ -1,7 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <!--
+    🕵️ Security Notice: This portfolio has been hardened against common web vulnerabilities.
+    Pentest report: All major OWASP Top 10 vulnerabilities mitigated.
+    Last security audit: 2024-01-01
+
+    Robots.txt hint: /secret-robots.txt (doesn't actually exist, but nice try!)
+    Hidden directories to check: /admin, /.well-known, /security.txt (all return 404)
+    SQL injection attempts will be logged and admired for creativity 😉
+
+    Easter egg hint #1: Try viewing source and searching for "flag{"
+    Easter egg hint #2: Open browser console and type help commands
+    -->
+    <!-- Turnstile only loads on proper domains, not local file:// URLs -->
+    <script>
+        if (window.location.protocol !== 'file:') {
+            const script = document.createElement('script');
+            script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Knight's Portfolio & Homelab</title>
@@ -18,19 +39,19 @@
             color: #1d1c1d;
             line-height: 1.6;
             overflow-x: hidden;
-            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="%234a154b" opacity="0.3"/><circle cx="12" cy="12" r="2" fill="%234a154b"/></svg>') 12 12, auto;
+            cursor: default;
         }
 
-        /* Fun Cursor Effects */
+        /* Subtle Cursor Effects */
         .cursor-trail {
             position: fixed;
-            width: 6px;
-            height: 6px;
-            background: rgba(74, 21, 75, 0.6);
+            width: 3px;
+            height: 3px;
+            background: rgba(44, 62, 80, 0.3);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
-            transition: transform 0.1s ease;
+            transition: transform 0.2s ease;
         }
 
         /* Easter Egg - Konami Code Effect */
@@ -75,7 +96,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            background: linear-gradient(135deg, #4a154b, #350d36);
+            background: linear-gradient(135deg, #2c3e50, #34495e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -95,8 +116,8 @@
         }
 
         .nav-links a:hover {
-            color: #4a154b;
-            transform: translateY(-2px);
+            color: #2c3e50;
+            transform: translateY(-1px);
         }
 
         .nav-links a::after {
@@ -106,7 +127,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(135deg, #4a154b, #350d36);
+            background: linear-gradient(135deg, #2c3e50, #34495e);
             transition: width 0.3s ease;
         }
 
@@ -151,7 +172,7 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(74, 21, 75, 0.3);
+            background: rgba(44, 62, 80, 0.3);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
@@ -174,21 +195,17 @@
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-                opacity: 0.3;
-            }
-            25% {
-                transform: translateY(-20px) rotate(90deg);
-                opacity: 0.8;
+            0% {
+                transform: translateY(0px);
+                opacity: 0.2;
             }
             50% {
-                transform: translateY(-40px) rotate(180deg);
-                opacity: 0.6;
+                transform: translateY(-15px);
+                opacity: 0.5;
             }
-            75% {
-                transform: translateY(-20px) rotate(270deg);
-                opacity: 0.8;
+            100% {
+                transform: translateY(-30px);
+                opacity: 0;
             }
         }
 
@@ -197,49 +214,30 @@
                 transform: translateY(0);
             }
             40% {
-                transform: translateY(-10px);
-            }
-            60% {
                 transform: translateY(-5px);
             }
+            60% {
+                transform: translateY(-2px);
+            }
         }
 
-        @keyframes wiggle {
-            0%, 7% {
+        @keyframes subtle-wiggle {
+            0% {
                 transform: rotateZ(0);
             }
-            15% {
-                transform: rotateZ(-15deg);
+            50% {
+                transform: rotateZ(-2deg);
             }
-            20% {
-                transform: rotateZ(10deg);
-            }
-            25% {
-                transform: rotateZ(-10deg);
-            }
-            30% {
-                transform: rotateZ(6deg);
-            }
-            35% {
-                transform: rotateZ(-4deg);
-            }
-            40%, 100% {
+            100% {
                 transform: rotateZ(0);
             }
         }
 
-        @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        @keyframes subtle-shake {
+            0% { transform: translate(0px, 0px); }
+            25% { transform: translate(-1px, 0px); }
+            75% { transform: translate(1px, 0px); }
+            100% { transform: translate(0px, 0px); }
         }
 
         .hero-content {
@@ -303,26 +301,26 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #4a154b, #350d36);
+            background: linear-gradient(135deg, #2c3e50, #34495e);
             color: white;
         }
 
         .btn-primary:hover {
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-3px) scale(1.02);
             box-shadow: 0 15px 35px rgba(74, 21, 75, 0.6);
-            animation: wiggle 1s ease-in-out;
+            animation: subtle-wiggle 0.5s ease-in-out;
         }
 
         .btn-secondary {
             background: transparent;
             color: #1d1c1d;
-            border: 2px solid #4a154b;
+            border: 2px solid #2c3e50;
         }
 
         .btn-secondary:hover {
-            background: #4a154b;
+            background: #2c3e50;
             color: white;
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-3px) scale(1.02);
             box-shadow: 0 15px 35px rgba(74, 21, 75, 0.4);
             animation: bounce 0.8s ease-in-out;
         }
@@ -352,7 +350,7 @@
         }
 
         .about-image {
-            background: linear-gradient(135deg, #4a154b, #350d36);
+            background: linear-gradient(135deg, #2c3e50, #34495e);
             border-radius: 20px;
             padding: 2rem;
             text-align: center;
@@ -367,7 +365,7 @@
         .about-text h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
-            color: #4a154b;
+            color: #2c3e50;
         }
 
         .about-text p {
@@ -385,7 +383,7 @@
 
         .skill-tag {
             background: rgba(74, 21, 75, 0.1);
-            color: #4a154b;
+            color: #2c3e50;
             padding: 0.5rem 1rem;
             border-radius: 25px;
             font-size: 0.9rem;
@@ -400,7 +398,7 @@
         .skill-tag:hover {
             background: rgba(74, 21, 75, 0.8);
             color: white;
-            transform: translateY(-3px) scale(1.1);
+            transform: translateY(-2px) scale(1.05);
             box-shadow: 0 5px 15px rgba(74, 21, 75, 0.3);
             animation: wiggle 0.6s ease-in-out;
         }
@@ -451,10 +449,10 @@
         }
 
         .homelab-card:hover {
-            transform: translateY(-8px) rotate(2deg);
+            transform: translateY(-3px);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
             border-color: rgba(79, 70, 229, 0.5);
-            animation: shake 0.5s ease-in-out;
+            animation: subtle-shake 0.3s ease-in-out;
         }
 
         .homelab-card:hover h3 {
@@ -521,7 +519,7 @@
         }
 
         .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-3px) scale(1.01);
             box-shadow: 0 25px 50px rgba(74, 21, 75, 0.3);
             border-color: rgba(74, 21, 75, 0.5);
             background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(74, 21, 75, 0.05) 100%);
@@ -530,7 +528,7 @@
 
         .project-card:hover .project-image {
             animation: bounce 1s ease-in-out;
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .project-image {
@@ -566,18 +564,18 @@
         }
 
         .project-links a {
-            color: #4a154b;
+            color: #2c3e50;
             text-decoration: none;
             font-weight: 600;
             padding: 8px 16px;
-            border: 2px solid #4a154b;
+            border: 2px solid #2c3e50;
             border-radius: 25px;
             transition: all 0.3s ease;
             display: inline-block;
         }
 
         .project-links a:hover {
-            background: #4a154b;
+            background: #2c3e50;
             color: white;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(74, 21, 75, 0.3);
@@ -664,9 +662,15 @@
 
         /* Scroll animations */
         .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease;
+        }
+
+        /* Only apply animation if intersection observer is supported */
+        .fade-in.observe {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.6s ease;
         }
 
         .fade-in.visible {
@@ -678,9 +682,19 @@
 <body>
     <!-- Floating Particles Background -->
     <div class="particles" id="particles"></div>
+
+    <!-- 🔍 Security researchers: inspect this element for hidden attributes -->
+    <div id="honeypot" style="display: none;"
+         data-flag="ZmxhZ3tpbnNwZWN0X2VsZW1lbnRzX2Zvcl9zZWNyZXRzfQ=="
+         data-hint="Base64 decoded reveals another flag!"
+         data-vulnerability="none-found"
+         data-pentest-status="secure">
+        <!-- This honeypot is intentionally hidden. Finding this means you're thorough! -->
+        <!-- Hidden message: The best security professionals check everything -->
+    </div>
     <header>
         <nav class="container">
-            <div class="logo">KNIGHT'S LAB</div>
+            <div class="logo" title="💡 Hint: Double-click me for security wisdom!">KNIGHT'S LAB</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -705,6 +719,9 @@
                         <a href="#projects" class="btn btn-primary">View My Work</a>
                         <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                     </div>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 1rem; font-style: italic;">
+                        💾 Pro tip: Try Ctrl+Shift+S for security mode, or type "hacktheplanet"
+                    </p>
                 </div>
             </div>
         </section>
@@ -735,7 +752,7 @@
                             proxies with Cloudflare Access for robust user authentication. These projects allow me to experiment with 
                             enterprise-grade security concepts in a controlled environment while maintaining complete control over my data and privacy.
                         </p>
-                        <div class="skills">
+                        <div class="skills" title="💡 Hint: Try right-clicking these skills for hidden tools">
                             <span class="skill-tag">Docker</span>
                             <span class="skill-tag">Kubernetes</span>
                             <span class="skill-tag">AWS</span>
@@ -751,12 +768,12 @@
                         </div>
                         
                         <div class="certifications" style="margin-top: 2rem;">
-                            <h4 style="color: #4a154b; margin-bottom: 1rem; font-size: 1.2rem;">🏆 Certifications</h4>
+                            <h4 style="color: #2c3e50; margin-bottom: 1rem; font-size: 1.2rem;">🏆 Certifications</h4>
                             <a href="https://www.credly.com/badges/e1f87739-2954-481d-bcc2-12ca7f2c290a/public_url" 
                                target="_blank" 
-                               style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(74, 21, 75, 0.1); 
-                                      color: #4a154b; padding: 0.8rem 1.2rem; border-radius: 25px; text-decoration: none; 
-                                      font-weight: 600; border: 1px solid rgba(74, 21, 75, 0.2); transition: all 0.3s ease;">
+                               style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(44, 62, 80, 0.1);
+                                      color: #2c3e50; padding: 0.8rem 1.2rem; border-radius: 25px; text-decoration: none; 
+                                      font-weight: 600; border: 1px solid rgba(44, 62, 80, 0.2); transition: all 0.3s ease;">
                                 🛡️ CISSP - Certified Information Systems Security Professional
                             </a>
                         </div>
@@ -767,7 +784,10 @@
 
         <section id="projects" class="fade-in">
             <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
+                <h2 class="section-title">Featured Projects
+                    <span style="font-size: 0.7rem; color: #666; font-weight: normal;">🔍 View source for hidden flags</span>
+                </h2>
+                <!-- flag{s0urc3_c0d3_r3v13w_m4st3r} -->
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">🔐</div>
@@ -842,10 +862,22 @@
         </section>
     </main>
 
+    <!--
+    🏁 Final Challenge for Security Researchers:
+    If you've made it this far in the source code, you deserve the ultimate flag!
+    flag{d33p_d1v3_s0urc3_c0d3_4n4lys1s_m4st3r}
+
+    You've demonstrated the persistence and thoroughness of a true security professional.
+    Keep up the great work protecting the digital world! 🛡️
+    -->
+
     <footer>
         <div class="container">
             <p>&copy; 2025 Knight's Home Lab. Built with passion and coffee ☕</p>
-             <div class="cf-turnstile" data-sitekey="0x4AAAAAAB3IBM-CKcjOxYnC"></div>
+            <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem;">
+                🕵️ Security professionals: Press F12 and try some commands... | Double-click the logo for wisdom
+            </p>
+             <div class="cf-turnstile" data-sitekey="0x4AAAAAAB3IBM-CKcjOxYnC" style="display: none;" id="turnstile-widget"></div>
         </div>
     </footer>
 
@@ -873,12 +905,15 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    entry.target.classList.remove('observe');
                     entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
         document.querySelectorAll('.fade-in').forEach(el => {
+            // Add observe class for animation, but content is visible by default
+            el.classList.add('observe');
             observer.observe(el);
         });
 
@@ -918,7 +953,7 @@
         // Create floating particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+            const particleCount = 20;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -959,7 +994,7 @@
         // Fun click effects
         function createClickEffect(e) {
             const clickEffect = document.createElement('div');
-            clickEffect.innerHTML = ['💥', '⭐', '✨', '🎉', '🔥'][Math.floor(Math.random() * 5)];
+            clickEffect.innerHTML = '•';
             clickEffect.style.position = 'fixed';
             clickEffect.style.left = e.clientX + 'px';
             clickEffect.style.top = e.clientY + 'px';
@@ -994,7 +1029,7 @@
 
                 // Add fun message
                 const message = document.createElement('div');
-                message.innerHTML = '🎉 KONAMI CODE ACTIVATED! 🎉';
+                message.innerHTML = 'KONAMI CODE ACTIVATED';
                 message.style.cssText = `
                     position: fixed; top: 50%; left: 50%;
                     transform: translate(-50%, -50%);
@@ -1020,7 +1055,7 @@
             logoClickCount++;
 
             if (logoClickCount >= 5) {
-                logo.style.animation = 'shake 0.5s ease-in-out';
+                logo.style.animation = 'subtle-shake 0.3s ease-in-out';
                 setTimeout(() => {
                     logo.style.animation = '';
                     logoClickCount = 0;
@@ -1063,6 +1098,228 @@
             }, { threshold: 0.5 });
 
             projectCards.forEach(card => observer.observe(card));
+
+            // Security Easter Eggs for the community! 🔐
+
+            // 1. Console commands for security professionals
+            window.nmap = function(target = 'localhost') {
+                console.log(`
+Starting Nmap scan on ${target}...
+Host is up (0.00034s latency).
+Not shown: 65534 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+443/tcp  open  https
+
+Nmap done: 1 IP address (1 host up) scanned in 2.45 seconds
+🕵️ Nice try! But this portfolio is secure 😉`);
+                return 'Scan complete. No vulnerabilities found!';
+            };
+
+            window.whoami = function() {
+                console.log('knight 🛡️');
+                return 'You are viewing Knight\'s portfolio';
+            };
+
+            window.sudo = function(command) {
+                console.log(`sudo: ${command}: command not found`);
+                console.log('knight is not in the sudoers file. This incident will be reported. 📝');
+                return 'Permission denied';
+            };
+
+            window.ls = function(path = '/') {
+                const files = ['about.txt', 'projects/', 'skills.db', '.hidden_flag', 'contact.json'];
+                console.log(files.join('  '));
+                if (path === '-la' || path === '-la /') {
+                    console.log('total 42');
+                    console.log('drwxr-xr-x  5 knight knight 4096 Jan 1 2024 .');
+                    console.log('drwxr-xr-x  3 root   root   4096 Jan 1 2024 ..');
+                    console.log('-rw-r--r--  1 knight knight  220 Jan 1 2024 about.txt');
+                    console.log('drwxr-xr-x  2 knight knight 4096 Jan 1 2024 projects');
+                    console.log('-rw-r--r--  1 knight knight 1337 Jan 1 2024 skills.db');
+                    console.log('-rw-------  1 knight knight   42 Jan 1 2024 .hidden_flag');
+                    console.log('-rw-r--r--  1 knight knight  256 Jan 1 2024 contact.json');
+                }
+                return files;
+            };
+
+            window.cat = function(file) {
+                const files = {
+                    'about.txt': 'Cybersecurity professional with a passion for defensive security.',
+                    '.hidden_flag': 'flag{w3lc0m3_t0_kn1ght5_p0rtf0l10}',
+                    'contact.json': '{"name": "Knight", "role": "Security Engineer", "loves": "Blue Team Operations"}',
+                    'skills.db': 'CISSP | SOC Analysis | Incident Response | Threat Hunting | SIEM | Vulnerability Management'
+                };
+
+                if (files[file]) {
+                    console.log(files[file]);
+                    if (file === '.hidden_flag') {
+                        console.log('🏁 Congratulations! You found the hidden flag!');
+                    }
+                    return files[file];
+                } else {
+                    console.log(`cat: ${file}: No such file or directory`);
+                    return null;
+                }
+            };
+
+            // 2. Double-click logo for security quote
+            let logoClickCount = 0;
+            const logo = document.querySelector('.logo');
+            logo.addEventListener('dblclick', function() {
+                const quotes = [
+                    "Security is not a product, but a process. - Bruce Schneier",
+                    "The only truly secure system is one that is powered off. - Gene Spafford",
+                    "Passwords are like underwear: change them often. - Unknown",
+                    "Trust but verify. - Ronald Reagan",
+                    "Security through obscurity is not security. - Unknown"
+                ];
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                alert('🔐 Security Wisdom:\n\n' + randomQuote);
+            });
+
+            // 3. Secret key combination: Ctrl+Shift+S for security mode
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.shiftKey && e.key === 'S') {
+                    e.preventDefault();
+                    document.body.style.filter = 'sepia(1) hue-rotate(90deg)';
+                    document.body.style.transition = 'filter 0.5s ease';
+
+                    const message = document.createElement('div');
+                    message.innerHTML = '🔍 Security Mode Activated - Threat Detection Enhanced';
+                    message.style.cssText = `
+                        position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                        background: #2c3e50; color: #00ff00; padding: 20px; border-radius: 10px;
+                        font-family: monospace; z-index: 10000; box-shadow: 0 0 20px rgba(0,255,0,0.5);
+                        border: 2px solid #00ff00; text-align: center; animation: bounce 1s ease-out;
+                    `;
+                    document.body.appendChild(message);
+
+                    setTimeout(() => {
+                        message.remove();
+                        document.body.style.filter = '';
+                    }, 3000);
+                }
+            });
+
+            // 4. Right-click on skills to reveal hidden security tools
+            const skillTagsForEasterEgg = document.querySelectorAll('.skill-tag');
+            skillTagsForEasterEgg.forEach(skill => {
+                skill.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                    const hiddenTools = ['Wireshark', 'Metasploit', 'Burp Suite', 'Nessus', 'Splunk', 'ELK Stack', 'YARA', 'Volatility'];
+                    const randomTool = hiddenTools[Math.floor(Math.random() * hiddenTools.length)];
+
+                    const tooltip = document.createElement('div');
+                    tooltip.innerHTML = `🛠️ Hidden Tool: ${randomTool}`;
+                    tooltip.style.cssText = `
+                        position: absolute; background: #2c3e50; color: white; padding: 8px 12px;
+                        border-radius: 5px; font-size: 12px; z-index: 1000; pointer-events: none;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.3); white-space: nowrap;
+                    `;
+                    tooltip.style.left = e.pageX + 10 + 'px';
+                    tooltip.style.top = e.pageY - 30 + 'px';
+                    document.body.appendChild(tooltip);
+
+                    setTimeout(() => tooltip.remove(), 2000);
+                });
+            });
+
+            // 5. Type "hacktheplanet" anywhere to unlock matrix mode
+            let typedSequence = '';
+            document.addEventListener('keydown', function(e) {
+                typedSequence += e.key.toLowerCase();
+                if (typedSequence.length > 13) {
+                    typedSequence = typedSequence.slice(-13);
+                }
+
+                if (typedSequence === 'hacktheplanet') {
+                    typedSequence = '';
+                    matrixMode();
+                }
+            });
+
+            function matrixMode() {
+                const canvas = document.createElement('canvas');
+                canvas.style.cssText = `
+                    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                    z-index: 9999; pointer-events: none; opacity: 0.1;
+                `;
+                document.body.appendChild(canvas);
+
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+                const charArray = chars.split('');
+                const fontSize = 10;
+                const columns = canvas.width / fontSize;
+                const drops = Array(Math.floor(columns)).fill(1);
+
+                function drawMatrix() {
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    ctx.fillStyle = '#00ff00';
+                    ctx.font = fontSize + 'px monospace';
+
+                    for (let i = 0; i < drops.length; i++) {
+                        const text = charArray[Math.floor(Math.random() * charArray.length)];
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                            drops[i] = 0;
+                        }
+                        drops[i]++;
+                    }
+                }
+
+                const matrixInterval = setInterval(drawMatrix, 50);
+
+                setTimeout(() => {
+                    clearInterval(matrixInterval);
+                    canvas.remove();
+                    alert('🕶️ Welcome to the Matrix, Neo...\n\nYou found the secret matrix mode!');
+                }, 5000);
+            }
+
+            // 6. Console welcome message with all easter egg hints
+            console.log(`
+%c🔐 WELCOME SECURITY PROFESSIONAL! 🔐
+
+You found the developer console! Here are interactive commands you can try:
+
+CONSOLE COMMANDS:
+• nmap() or nmap('target') - Run a port scan
+• whoami() - Identify yourself
+• ls() or ls('-la') - List directory contents
+• cat('filename') - Read files (.hidden_flag, about.txt, etc.)
+• sudo('command') - Try privilege escalation (good luck!)
+
+INTERACTIVE EASTER EGGS:
+• Double-click the KNIGHT'S LAB logo - Get security quotes
+• Right-click any skill tag - Discover hidden security tools
+• Press Ctrl+Shift+S - Activate security mode
+• Type "hacktheplanet" anywhere - Matrix mode activated
+• Konami code ↑↑↓↓←→←→BA - Rainbow mode
+• View page source - Hunt for hidden flags!
+
+Have fun exploring! 🕵️‍♂️💻
+            `, 'color: #00ff00; font-weight: bold; font-size: 16px; background: #000; padding: 10px;');
+
+            // Also show a smaller reminder
+            console.log('%cTip: Try nmap() to get started!', 'color: #ffff00; font-size: 12px;');
+
+            // Show Turnstile widget only on proper domains
+            if (window.location.protocol !== 'file:') {
+                const turnstileWidget = document.getElementById('turnstile-widget');
+                if (turnstileWidget) {
+                    turnstileWidget.style.display = 'block';
+                }
+            }
+
         });
     </script>
 </body>

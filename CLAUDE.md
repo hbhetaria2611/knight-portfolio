@@ -9,19 +9,19 @@ This is Knight's Portfolio & Homelab - a personal portfolio website for a securi
 ## Architecture
 
 ### Single-File Architecture
-- **Complete Self-Contained Application**: Everything is in `index.html` (1,056 lines)
-- **Embedded Styles**: All CSS is within `<style>` tags in the HTML head (lines 7-693)
-- **Embedded JavaScript**: All interactivity handled by vanilla JavaScript in `<script>` tags (lines 839-1056)
+- **Complete Self-Contained Application**: Everything is in `index.html` (~1,069 lines)
+- **Embedded Styles**: All CSS is within `<style>` tags in the HTML head
+- **Embedded JavaScript**: All interactivity handled by vanilla JavaScript in `<script>` tags
 - **No Build Process**: Direct deployment - open `index.html` in any browser
-- **No External Dependencies**: All fonts, animations, and functionality are self-contained
+- **Minimal External Dependencies**: Only Cloudflare Turnstile script for bot protection
 
 ### Page Structure
 The site uses a single-page layout with smooth scrolling navigation:
-- **Header/Navigation**: Fixed header with links to #home, #about, #projects, #contact (lines 694-710)
-- **Hero Section** (#home): Animated landing with typing effects and floating particles (lines 711-766)
-- **About Section** (#about): Personal information, skills grid, and CISSP certification (lines 767-806)
-- **Projects Section** (#projects): Featured work with GitHub links and live demos (lines 807-837)
-- **Contact Section** (#contact): Professional contact information and social links (lines 808-837)
+- **Header/Navigation**: Fixed header with links to #home, #about, #projects, #contact
+- **Hero Section** (#home): Animated landing with typing effects and floating particles
+- **About Section** (#about): Personal information, skills grid, and CISSP certification
+- **Projects Section** (#projects): Featured work with GitHub links and live demos
+- **Contact Section** (#contact): Professional contact information and social links
 
 ### Interactive Features Architecture
 - **Floating Particles System**: 50 dynamically generated particles with random animations
@@ -69,7 +69,7 @@ git push origin main
 ## Content Management
 
 ### Adding New Projects
-Projects are defined in the `#projects` section around line 740-780. Each project follows this structure:
+Projects are defined in the `#projects` section. Each project follows this structure:
 ```html
 <div class="project-card">
     <div class="project-image">🔐</div>
@@ -118,3 +118,7 @@ This is a cybersecurity professional's portfolio emphasizing:
 - **Modern Browser Features**: Uses ES6+, CSS Grid, Intersection Observer API
 - **Responsive Design**: Mobile-first approach with comprehensive media queries
 - **Progressive Enhancement**: Core content accessible even without JavaScript animations
+
+### Security Features
+- **Bot Protection**: Cloudflare Turnstile integration for bot detection and protection
+- **Content Security**: No external content dependencies beyond Turnstile script
