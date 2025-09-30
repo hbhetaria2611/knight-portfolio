@@ -882,7 +882,12 @@
                         <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                         <a href="/resume.pdf" class="btn btn-secondary" download="Harsh_Bhetaria_Resume.pdf">📄 Download Resume</a>
                     </div>
-                    <p style="font-size: 0.9rem; color: #666; margin-top: 1rem; font-style: italic;">
+                    <p style="font-size: 0.75rem; color: #888; margin-top: 0.8rem; font-family: monospace; cursor: pointer;"
+                       onclick="copyToClipboard('fb5b4c99a60f719669a36122aa952bfc2767e89ca4da5179da92f052435a1054')"
+                       title="Click to copy SHA256 checksum">
+                        🔐 SHA256: fb5b4c99a60f719669a36122aa952bfc2767e89ca4da5179da92f052435a1054 <span style="font-size: 0.7rem;">(click to copy)</span>
+                    </p>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem; font-style: italic;">
                         💾 Pro tip: Try Ctrl+Shift+S for security mode, or type "hacktheplanet"
                     </p>
                 </div>
@@ -1390,6 +1395,31 @@
                     logoClickCount = 0;
                 }, 500);
             }
+        }
+
+        // Copy to clipboard function for SHA256 checksum
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const message = document.createElement('div');
+                message.innerHTML = '✅ SHA256 checksum copied to clipboard!';
+                message.style.cssText = `
+                    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                    background: rgba(16, 185, 129, 0.95); color: white; padding: 12px 24px;
+                    border-radius: 8px; z-index: 10001; font-size: 14px; font-weight: 600;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2); animation: fadeInUp 0.3s ease-out;
+                `;
+                document.body.appendChild(message);
+
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    message.style.transform = 'translateX(-50%) translateY(-20px)';
+                    message.style.transition = 'all 0.3s ease';
+                    setTimeout(() => message.remove(), 300);
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy checksum:', err);
+                alert('Checksum: ' + text);
+            });
         }
 
         // Initialize fun effects
