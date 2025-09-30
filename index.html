@@ -668,6 +668,142 @@
             margin-top: 0.5rem;
         }
 
+        /* GPG Key Section */
+        .gpg-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            border: 2px solid rgba(74, 21, 75, 0.2);
+            box-shadow: 0 8px 25px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+
+        .gpg-section:hover {
+            border-color: rgba(74, 21, 75, 0.4);
+            box-shadow: 0 12px 35px var(--shadow-color);
+        }
+
+        .gpg-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .gpg-header h3 {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .gpg-fingerprint {
+            background: rgba(74, 21, 75, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(74, 21, 75, 0.2);
+        }
+
+        .gpg-fingerprint:hover {
+            background: rgba(74, 21, 75, 0.15);
+            border-color: rgba(74, 21, 75, 0.4);
+        }
+
+        .gpg-fingerprint strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .gpg-fingerprint code {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .gpg-key-container {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .gpg-key-box {
+            background: rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            line-height: 1.4;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .gpg-key-box {
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .gpg-key-box:hover {
+            border-color: rgba(74, 21, 75, 0.4);
+            background: rgba(74, 21, 75, 0.05);
+        }
+
+        .gpg-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .gpg-btn {
+            padding: 0.6rem 1.2rem;
+            background: rgba(74, 21, 75, 0.1);
+            color: var(--text-primary);
+            border: 2px solid rgba(74, 21, 75, 0.3);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .gpg-btn:hover {
+            background: rgba(74, 21, 75, 0.2);
+            border-color: rgba(74, 21, 75, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 21, 75, 0.2);
+        }
+
+        .gpg-info {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        .gpg-info a {
+            color: #4a154b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .gpg-info a:hover {
+            text-decoration: underline;
+        }
+
         /* Homelab Section */
         .homelab-grid {
             display: grid;
@@ -1279,7 +1415,89 @@
                         <a href="https://github.com/hbhetaria2611" class="contact-link">
                             🐙 GitHub
                         </a>
+                    </div>
 
+                    <!-- GPG Public Key Section -->
+                    <div class="gpg-section">
+                        <div class="gpg-header">
+                            <h3>🔐 PGP/GPG Public Key</h3>
+                        </div>
+
+                        <div class="gpg-fingerprint" onclick="copyToClipboard('1BCF4D18E05AF929399AC0D3CBAAB1F5DCADE586')" title="Click to copy fingerprint">
+                            <strong>Key Fingerprint:</strong>
+                            <code>1BCF 4D18 E05A F929 399A C0D3 CBAA B1F5 DCAD E586</code>
+                        </div>
+
+                        <div class="gpg-key-container">
+                            <div class="gpg-key-box" onclick="copyGPGKey()" title="Click to copy full public key">-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+SgieuZtsuw==
+=d1M/
+-----END PGP PUBLIC KEY BLOCK-----</div>
+                        </div>
+
+                        <div class="gpg-actions">
+                            <button class="gpg-btn" onclick="copyGPGKey()">
+                                📋 Copy Full Key
+                            </button>
+                            <a href="https://keys.openpgp.org/search?q=1BCF4D18E05AF929399AC0D3CBAAB1F5DCADE586" target="_blank" class="gpg-btn">
+                                🔍 Verify on Keyserver
+                            </a>
+                            <button class="gpg-btn" onclick="downloadGPGKey()">
+                                💾 Download .asc File
+                            </button>
+                        </div>
+
+                        <div class="gpg-info">
+                            <p><strong>For secure communication:</strong> Use this key to send me encrypted messages or verify my signed communications. You can import it with: <code>gpg --import</code></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1549,9 +1767,19 @@
 
         // Copy to clipboard function for SHA256 checksum
         function copyToClipboard(text) {
+            const isSHA256 = text.length === 64;
+            const isFingerprint = text.length === 40;
+
+            let successMessage = '✅ Copied to clipboard!';
+            if (isSHA256) {
+                successMessage = '✅ SHA256 checksum copied to clipboard!';
+            } else if (isFingerprint) {
+                successMessage = '✅ GPG fingerprint copied to clipboard!';
+            }
+
             navigator.clipboard.writeText(text).then(() => {
                 const message = document.createElement('div');
-                message.innerHTML = '✅ SHA256 checksum copied to clipboard!';
+                message.innerHTML = successMessage;
                 message.style.cssText = `
                     position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
                     background: rgba(16, 185, 129, 0.95); color: white; padding: 12px 24px;
@@ -1567,9 +1795,70 @@
                     setTimeout(() => message.remove(), 300);
                 }, 2000);
             }).catch(err => {
-                console.error('Failed to copy checksum:', err);
-                alert('Checksum: ' + text);
+                console.error('Failed to copy:', err);
+                alert('Content: ' + text);
             });
+        }
+
+        // Copy GPG public key
+        function copyGPGKey() {
+            const keyBox = document.querySelector('.gpg-key-box');
+            const keyText = keyBox.textContent;
+
+            navigator.clipboard.writeText(keyText).then(() => {
+                const message = document.createElement('div');
+                message.innerHTML = '✅ GPG public key copied to clipboard!';
+                message.style.cssText = `
+                    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                    background: rgba(16, 185, 129, 0.95); color: white; padding: 12px 24px;
+                    border-radius: 8px; z-index: 10001; font-size: 14px; font-weight: 600;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2); animation: fadeInUp 0.3s ease-out;
+                `;
+                document.body.appendChild(message);
+
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    message.style.transform = 'translateX(-50%) translateY(-20px)';
+                    message.style.transition = 'all 0.3s ease';
+                    setTimeout(() => message.remove(), 300);
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy GPG key:', err);
+                alert('GPG Key copied to selection');
+            });
+        }
+
+        // Download GPG key as .asc file
+        function downloadGPGKey() {
+            const keyBox = document.querySelector('.gpg-key-box');
+            const keyText = keyBox.textContent;
+
+            const blob = new Blob([keyText], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'harsh_bhetaria_public_key.asc';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+
+            const message = document.createElement('div');
+            message.innerHTML = '✅ GPG key downloaded as .asc file!';
+            message.style.cssText = `
+                position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                background: rgba(16, 185, 129, 0.95); color: white; padding: 12px 24px;
+                border-radius: 8px; z-index: 10001; font-size: 14px; font-weight: 600;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2); animation: fadeInUp 0.3s ease-out;
+            `;
+            document.body.appendChild(message);
+
+            setTimeout(() => {
+                message.style.opacity = '0';
+                message.style.transform = 'translateX(-50%) translateY(-20px)';
+                message.style.transition = 'all 0.3s ease';
+                setTimeout(() => message.remove(), 300);
+            }, 2000);
         }
 
         // Initialize fun effects
