@@ -9,7 +9,7 @@ This is Knight's Portfolio & Homelab - a personal portfolio website for a securi
 ## Architecture
 
 ### Single-File Architecture
-- **Complete Self-Contained Application**: Everything is in `index.html` (~1,069 lines)
+- **Complete Self-Contained Application**: Everything is in `index.html` (~1,655 lines)
 - **Embedded Styles**: All CSS is within `<style>` tags in the HTML head
 - **Embedded JavaScript**: All interactivity handled by vanilla JavaScript in `<script>` tags
 - **No Build Process**: Direct deployment - open `index.html` in any browser
@@ -19,7 +19,7 @@ This is Knight's Portfolio & Homelab - a personal portfolio website for a securi
 The site uses a single-page layout with smooth scrolling navigation:
 - **Header/Navigation**: Fixed header with links to #home, #about, #projects, #contact
 - **Hero Section** (#home): Animated landing with typing effects and floating particles
-- **About Section** (#about): Personal information, skills grid, and CISSP certification
+- **About Section** (#about): Interactive experience cards, professional history, skills grid, and CISSP certification
 - **Projects Section** (#projects): Featured work with GitHub links and live demos
 - **Contact Section** (#contact): Professional contact information and social links
 
@@ -40,9 +40,10 @@ The site uses a single-page layout with smooth scrolling navigation:
 ## File Structure
 
 This is an extremely simple project with minimal files:
-- `index.html` - The entire application (1,056 lines containing HTML, CSS, and JavaScript)
+- `index.html` - The entire application (1,655 lines containing HTML, CSS, and JavaScript)
 - `README.md` - Simple project description
 - `CLAUDE.md` - This guidance file
+- `resume.pdf` - Downloadable resume (optional - linked from hero section)
 
 **No package.json, no build tools, no test frameworks, no linting tools, no dependencies.**
 
@@ -85,13 +86,24 @@ Projects are defined in the `#projects` section. Each project follows this struc
 ```
 
 ### Current Featured Projects
+**Professional Experience Section:**
+- Senior Product Security Engineer @ Slack
+- Security Engineer @ Amazon
+- Senior Security Consultant @ Synopsys
+
+**Personal Projects Section:**
 1. **HMAC Implementation & Security Analysis**: Cryptographic security analysis (GitHub: hbhetaria2611/HMAC)
-2. **Meal Planning Website**: Full-stack application (GitHub: hbhetaria2611/meal-planning, Live: meal.hnbhetaria.com)
-3. **Cloudflare Analytics Dashboard**: Modern Grafana-style dashboard for monitoring Cloudflare analytics in real-time (GitHub: hbhetaria2611/cloudflare-analytics-dashboard-workers, Live: analytics.hnbhetaria.com)
-4. **Homelab Monitoring Stack**: Comprehensive monitoring solution for distributed homelab setups using Grafana, Prometheus, and AlertManager (GitHub: hbhetaria2611/home-lab-management)
+2. **Cloudflare Analytics Dashboard**: Modern Grafana-style dashboard for monitoring Cloudflare analytics in real-time (GitHub: hbhetaria2611/cloudflare-analytics-dashboard-workers)
+3. **Homelab Monitoring Stack**: Comprehensive monitoring solution for distributed homelab setups using Grafana, Prometheus, and AlertManager (GitHub: hbhetaria2611/home-lab-management)
+
+### Professional Experience Management
+Experience is displayed as interactive cards in the About section with expandable details:
+- Each role has a `highlight-card clickable-card` with expand/collapse functionality
+- Clicking reveals detailed responsibilities and achievements
+- All experience details should match LinkedIn profile accuracy
 
 ### Skills Management
-Skills are individual `<span class="skill-tag">` elements in the About section with interactive hover effects including star animations and color transitions.
+Skills are organized under a "🚀 Skills" heading with individual `<span class="skill-tag">` elements featuring interactive hover effects including star animations and color transitions.
 
 ### Interactive Elements Customization
 - **Particle Count**: Modify `particleCount = 50` in JavaScript for performance tuning
@@ -129,3 +141,12 @@ This is a cybersecurity professional's portfolio emphasizing:
 - **No Build Process**: This is intentional - the site deploys by simply serving the HTML file
 - **External Dependencies**: Avoid adding any - only Cloudflare Turnstile is acceptable
 - **Security Context**: This is a cybersecurity professional's portfolio with security-themed easter eggs
+- **Content Accuracy**: All professional experience must match LinkedIn profile details exactly
+- **Resume Integration**: Portfolio includes resume download button linking to `/resume.pdf`
+
+## Content Guidelines
+- Professional experience should reflect actual responsibilities and achievements
+- All job titles and company names must be accurate
+- Skills section should represent current technical capabilities
+- Project descriptions should include quantifiable metrics where possible
+- Maintain professional tone while keeping interactive elements engaging
