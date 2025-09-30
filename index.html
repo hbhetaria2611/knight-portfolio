@@ -33,13 +33,48 @@
             box-sizing: border-box;
         }
 
+        :root {
+            /* Light mode colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f8f8;
+            --bg-gradient-start: #f8f8f8;
+            --bg-gradient-end: #ffffff;
+            --text-primary: #1d1c1d;
+            --text-secondary: #616061;
+            --text-tertiary: #4a5568;
+            --border-color: rgba(29, 28, 29, 0.1);
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-hover-bg: rgba(255, 255, 255, 1);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --particle-color: rgba(44, 62, 80, 0.3);
+        }
+
+        body.dark-mode {
+            /* Dark mode colors */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-gradient-start: #0f172a;
+            --bg-gradient-end: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
+            --border-color: rgba(241, 245, 249, 0.1);
+            --header-bg: rgba(15, 23, 42, 0.95);
+            --card-bg: rgba(30, 41, 59, 0.95);
+            --card-hover-bg: rgba(30, 41, 59, 1);
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --particle-color: rgba(139, 92, 246, 0.3);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
-            color: #1d1c1d;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
             cursor: default;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         /* Subtle Cursor Effects */
@@ -47,7 +82,7 @@
             position: fixed;
             width: 3px;
             height: 3px;
-            background: rgba(44, 62, 80, 0.3);
+            background: var(--particle-color);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -80,10 +115,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--header-bg);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(29, 28, 29, 0.1);
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         nav {
@@ -96,27 +132,25 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-primary);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
-            color: #1d1c1d;
+            color: var(--text-primary);
             text-decoration: none;
             transition: all 0.3s ease;
             position: relative;
         }
 
         .nav-links a:hover {
-            color: #2c3e50;
+            color: #4a154b;
             transform: translateY(-1px);
         }
 
@@ -127,12 +161,34 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
+            background: #4a154b;
             transition: width 0.3s ease;
         }
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background: none;
+            border: 2px solid var(--text-primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .dark-mode-toggle:hover {
+            transform: rotate(180deg) scale(1.1);
+            border-color: #4a154b;
+            box-shadow: 0 0 15px rgba(74, 21, 75, 0.3);
         }
 
         /* Hero Section */
@@ -172,7 +228,7 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(44, 62, 80, 0.3);
+            background: var(--particle-color);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
@@ -184,7 +240,7 @@
         }
 
         .particle:nth-child(3n) {
-            background: rgba(79, 70, 229, 0.3);
+            background: rgba(139, 92, 246, 0.3);
             animation-delay: -4s;
             animation-duration: 10s;
         }
@@ -249,16 +305,13 @@
             font-size: 4rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #1d1c1d, #616061);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-primary);
             animation: fadeInUp 1s ease-out;
         }
 
         .hero .subtitle {
             font-size: 1.5rem;
-            color: #616061;
+            color: var(--text-secondary);
             margin-bottom: 2rem;
             animation: fadeInUp 1s ease-out 0.3s both;
         }
@@ -268,6 +321,7 @@
             max-width: 600px;
             margin: 0 auto 2rem;
             animation: fadeInUp 1s ease-out 0.6s both;
+            color: var(--text-secondary);
         }
 
         @keyframes fadeInUp {
@@ -313,13 +367,14 @@
 
         .btn-secondary {
             background: transparent;
-            color: #1d1c1d;
-            border: 2px solid #2c3e50;
+            color: var(--text-primary);
+            border: 2px solid var(--text-primary);
         }
 
         .btn-secondary:hover {
-            background: #2c3e50;
+            background: #4a154b;
             color: white;
+            border-color: #4a154b;
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 15px 35px rgba(74, 21, 75, 0.4);
             animation: bounce 0.8s ease-in-out;
@@ -335,10 +390,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, #1d1c1d, #616061);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-primary);
         }
 
         /* About Section */
@@ -365,12 +417,12 @@
         .about-text h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
-            color: #2c3e50;
+            color: var(--text-primary);
         }
 
         .about-text p {
             margin-bottom: 1rem;
-            color: #616061;
+            color: var(--text-secondary);
             font-size: 1.1rem;
         }
 
@@ -384,17 +436,17 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            background: linear-gradient(135deg, rgba(74, 21, 75, 0.05) 0%, rgba(255, 255, 255, 0.95) 100%);
+            background: var(--card-bg);
             padding: 1.2rem;
             border-radius: 12px;
             border-left: 4px solid #4a154b;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px var(--shadow-color);
             transition: all 0.3s ease;
         }
         .highlight-card:hover {
             transform: translateX(8px);
             box-shadow: 0 8px 25px rgba(74, 21, 75, 0.15);
-            background: linear-gradient(135deg, rgba(74, 21, 75, 0.08) 0%, rgba(255, 255, 255, 1) 100%);
+            background: var(--card-hover-bg);
         }
         .highlight-icon {
             font-size: 2.5rem;
@@ -415,13 +467,13 @@
         }
         .highlight-content h4 {
             margin: 0 0 0.3rem 0;
-            color: #2c3e50;
+            color: var(--text-primary);
             font-size: 1.1rem;
             font-weight: 600;
         }
         .highlight-content p {
             margin: 0;
-            color: #616061;
+            color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.4;
         }
@@ -484,7 +536,7 @@
         .highlight-details li {
             margin-bottom: 0.6rem;
             padding-left: 0;
-            color: #2c3e50;
+            color: var(--text-secondary);
             font-size: 0.9rem;
             line-height: 1.5;
         }
@@ -517,7 +569,7 @@
 
         .skill-tag {
             background: rgba(74, 21, 75, 0.1);
-            color: #2c3e50;
+            color: var(--text-primary);
             padding: 0.5rem 1rem;
             border-radius: 25px;
             font-size: 0.9rem;
@@ -552,6 +604,68 @@
             top: -15px;
             opacity: 1;
             animation: bounce 0.6s ease-in-out;
+        }
+
+        /* Certification Link */
+        .cert-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(74, 21, 75, 0.1);
+            color: var(--text-primary);
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid rgba(74, 21, 75, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cert-link:hover {
+            background: rgba(74, 21, 75, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 21, 75, 0.2);
+        }
+
+        /* Section Subheadings */
+        .skills-section h4,
+        .certifications h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Hint and small text styles */
+        .checksum-text {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.8rem;
+            font-family: monospace;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .checksum-text:hover {
+            color: var(--text-primary);
+        }
+
+        .hint-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .subtitle-hint {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            font-weight: normal;
+        }
+
+        .footer-hint {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
         }
 
         /* Homelab Section */
@@ -644,19 +758,19 @@
         }
 
         .project-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.98) 100%);
+            background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
             border: 2px solid rgba(74, 21, 75, 0.2);
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px var(--shadow-color);
         }
 
         .project-card:hover {
             transform: translateY(-3px) scale(1.01);
             box-shadow: 0 25px 50px rgba(74, 21, 75, 0.3);
             border-color: rgba(74, 21, 75, 0.5);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(74, 21, 75, 0.05) 100%);
+            background: var(--card-hover-bg);
             animation: wiggle 2s ease-in-out;
         }
 
@@ -710,12 +824,12 @@
         .project-content h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: #1d1c1d;
+            color: var(--text-primary);
             font-weight: 700;
         }
 
         .project-content p {
-            color: #4a5568;
+            color: var(--text-tertiary);
             margin-bottom: 1rem;
             line-height: 1.6;
         }
@@ -726,19 +840,20 @@
         }
 
         .project-links a {
-            color: #2c3e50;
+            color: var(--text-primary);
             text-decoration: none;
             font-weight: 600;
             padding: 8px 16px;
-            border: 2px solid #2c3e50;
+            border: 2px solid var(--text-primary);
             border-radius: 25px;
             transition: all 0.3s ease;
             display: inline-block;
         }
 
         .project-links a:hover {
-            background: #2c3e50;
+            background: #4a154b;
             color: white;
+            border-color: #4a154b;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(74, 21, 75, 0.3);
         }
@@ -789,8 +904,9 @@
         footer {
             text-align: center;
             padding: 2rem 0;
-            color: #616061;
-            border-top: 1px solid rgba(29, 28, 29, 0.1);
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
         /* Responsive Design */
@@ -862,6 +978,9 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle dark mode" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button></li>
             </ul>
         </nav>
     </header>
@@ -882,12 +1001,12 @@
                         <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                         <a href="/resume.pdf" class="btn btn-secondary" download="Harsh_Bhetaria_Resume.pdf">📄 Download Resume</a>
                     </div>
-                    <p style="font-size: 0.75rem; color: #888; margin-top: 0.8rem; font-family: monospace; cursor: pointer;"
+                    <p class="checksum-text"
                        onclick="copyToClipboard('fb5b4c99a60f719669a36122aa952bfc2767e89ca4da5179da92f052435a1054')"
                        title="Click to copy SHA256 checksum">
                         🔐 Resume SHA256: fb5b4c99a60f719669a36122aa952bfc2767e89ca4da5179da92f052435a1054 <span style="font-size: 0.7rem;">(click to copy)</span>
                     </p>
-                    <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem; font-style: italic;">
+                    <p class="hint-text">
                         💾 Pro tip: Try Ctrl+Shift+S for security mode, or type "hacktheplanet"
                     </p>
                 </div>
@@ -1027,7 +1146,7 @@
                         </div>
 
                         <div class="skills-section" style="margin-top: 2rem;">
-                            <h4 style="color: #2c3e50; margin-bottom: 1rem; font-size: 1.2rem;">🚀 Skills</h4>
+                            <h4>🚀 Skills</h4>
                             <div class="skills" title="💡 Hint: Try right-clicking these skills for hidden tools">
                                 <span class="skill-tag">Docker</span>
                                 <span class="skill-tag">Kubernetes</span>
@@ -1045,12 +1164,10 @@
                         </div>
                         
                         <div class="certifications" style="margin-top: 2rem;">
-                            <h4 style="color: #2c3e50; margin-bottom: 1rem; font-size: 1.2rem;">🏆 Certifications</h4>
-                            <a href="https://www.credly.com/badges/e1f87739-2954-481d-bcc2-12ca7f2c290a/public_url" 
-                               target="_blank" 
-                               style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(44, 62, 80, 0.1);
-                                      color: #2c3e50; padding: 0.8rem 1.2rem; border-radius: 25px; text-decoration: none; 
-                                      font-weight: 600; border: 1px solid rgba(44, 62, 80, 0.2); transition: all 0.3s ease;">
+                            <h4>🏆 Certifications</h4>
+                            <a href="https://www.credly.com/badges/e1f87739-2954-481d-bcc2-12ca7f2c290a/public_url"
+                               target="_blank"
+                               class="cert-link">
                                 🛡️ CISSP - Certified Information Systems Security Professional
                             </a>
                         </div>
@@ -1062,7 +1179,7 @@
         <section id="projects" class="fade-in">
             <div class="container">
                 <h2 class="section-title">Featured Projects
-                    <span style="font-size: 0.7rem; color: #666; font-weight: normal;">🔍 View source for hidden flags</span>
+                    <span class="subtitle-hint">🔍 View source for hidden flags</span>
                 </h2>
                 <!-- flag{s0urc3_c0d3_r3v13w_m4st3r} -->
 
@@ -1181,7 +1298,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 Knight's Home Lab. Built with passion and coffee ☕</p>
-            <p style="font-size: 0.8rem; color: #666; margin-top: 0.5rem;">
+            <p class="footer-hint">
                 🕵️ Security professionals: Press F12 and try some commands... | Double-click the logo for wisdom
             </p>
              <div class="cf-turnstile" data-sitekey="0x4AAAAAAB3IBM-CKcjOxYnC" style="display: none;" id="turnstile-widget"></div>
@@ -1189,6 +1306,39 @@
     </footer>
 
     <script>
+        // Dark Mode Toggle Function
+        function toggleDarkMode() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-icon');
+
+            body.classList.toggle('dark-mode');
+
+            // Update icon
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        // Initialize dark mode based on user preference
+        function initializeDarkMode() {
+            const darkMode = localStorage.getItem('darkMode');
+            const themeIcon = document.querySelector('.theme-icon');
+
+            // Check for saved preference or system preference
+            if (darkMode === 'enabled' ||
+                (darkMode === null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.body.classList.add('dark-mode');
+                if (themeIcon) themeIcon.textContent = '☀️';
+            }
+        }
+
+        // Initialize dark mode immediately
+        initializeDarkMode();
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
