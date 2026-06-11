@@ -4,7 +4,7 @@
     <!--
     🕵️ Security Notice: This portfolio has been hardened against common web vulnerabilities.
     Pentest report: All major OWASP Top 10 vulnerabilities mitigated.
-    Last security audit: 2024-01-01
+    Last security audit: 2026-01-01
 
     Robots.txt hint: /secret-robots.txt (doesn't actually exist, but nice try!)
     Hidden directories to check: /admin, /.well-known, /security.txt (all return 404)
@@ -25,7 +25,18 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harsh Bhetaria - Lead Security Engineer</title>
+    <meta name="description" content="Portfolio of Harsh Bhetaria, Lead Product Security Engineer with 10+ years in threat modeling, AppSec, and AI-powered security automation. CISSP certified.">
+    <meta name="author" content="Harsh Bhetaria">
+    <meta name="theme-color" content="#4a154b">
+    <meta property="og:title" content="Harsh Bhetaria — Lead Product Security Engineer">
+    <meta property="og:description" content="Security engineering portfolio: threat modeling, AppSec, DevSecOps, and AI-powered security automation. CISSP certified.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Knight's Lab">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Harsh Bhetaria — Lead Product Security Engineer">
+    <meta name="twitter:description" content="Security engineering portfolio: threat modeling, AppSec, DevSecOps, and AI-powered security automation. CISSP certified.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+    <title>Harsh Bhetaria - Lead Product Security Engineer</title>
     <style>
         * {
             margin: 0;
@@ -591,7 +602,7 @@
             font-weight: 500;
             border: 1px solid rgba(74, 21, 75, 0.2);
             transition: all 0.3s ease;
-            cursor: pointer;
+            cursor: default;
             position: relative;
             overflow: hidden;
         }
@@ -1513,6 +1524,37 @@
             border-color: #10b981;
             background: rgba(16, 185, 129, 0.1);
         }
+
+        /* Keyboard focus visibility */
+        .clickable-card:focus-visible,
+        .btn:focus-visible,
+        .contact-link:focus-visible,
+        .gpg-btn:focus-visible {
+            outline: 3px solid #4a154b;
+            outline-offset: 2px;
+        }
+
+        body.dark-mode .clickable-card:focus-visible,
+        body.dark-mode .btn:focus-visible,
+        body.dark-mode .contact-link:focus-visible,
+        body.dark-mode .gpg-btn:focus-visible {
+            outline-color: #c084fc;
+        }
+
+        /* Respect reduced-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            html {
+                scroll-behavior: auto !important;
+            }
+            .particles, .cursor-trail {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1562,9 +1604,9 @@
         <section id="home" class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <div class="logo"><object data="github_profile_logo.svg" type="image/svg+xml" width="100" height="100"></object></div>
+                    <div class="logo"><img src="github_profile_logo.svg" alt="Knight's Lab logo" width="100" height="100"></div>
                     <h1>Harsh Bhetaria</h1>
-                    <p class="subtitle">Lead Security Engineer</p>
+                    <p class="subtitle">Lead Product Security Engineer</p>
                     <p class="description">
                         Welcome to my corner of the internet where I showcase my professional work and personal projects. 
                         Passionate about cybersecurity, infrastructure automation, and building secure, scalable solutions.
@@ -1579,9 +1621,6 @@
                        title="Click to copy SHA256 checksum">
                         🔐 Resume SHA256: 7f6d68d09f5919a61166c48bac8ded50b536f6fbede26e6bbdc2379b5fabc26b <span style="font-size: 0.7rem;">(click to copy)</span>
                     </p>
-                    <p class="hint-text">
-                        💾 Pro tip: Try Ctrl+Shift+S for security mode, or type "hacktheplanet"
-                    </p>
                 </div>
             </div>
         </section>
@@ -1591,7 +1630,7 @@
                 <h2 class="section-title">About Me</h2>
                 <div class="stats-section">
                     <div class="stat-item">
-                        <span class="stat-number" data-target="8" data-suffix="+">8+</span>
+                        <span class="stat-number" data-target="10" data-suffix="+">10+</span>
                         <span class="stat-label">Years Experience</span>
                     </div>
                     <div class="stat-item">
@@ -1653,7 +1692,7 @@
                                         <li>🛡️ <strong>Security Integration:</strong> Helping teams integrate security considerations into their planning processes</li>
                                         <li>📋 <strong>Security Reviews:</strong> Performing comprehensive security assessments of systems and applications</li>
                                     </ul>
-                                    <p><em>3+ years of experience securing enterprise communication for millions of users worldwide</em></p>
+                                    <p><em>5+ years of experience securing enterprise communication for millions of users worldwide</em></p>
                                 </div>
                             </div>
 
@@ -1826,9 +1865,7 @@
 
         <section id="projects" class="fade-in">
             <div class="container">
-                <h2 class="section-title">Featured Projects
-                    <span class="subtitle-hint">🔍 View source for hidden flags</span>
-                </h2>
+                <h2 class="section-title">Featured Projects</h2>
                 <!-- flag{s0urc3_c0d3_r3v13w_m4st3r} -->
 
                 <h3 class="projects-subheading projects-subheading--purple">🏢 Professional Experience</h3>
@@ -1839,7 +1876,7 @@
                             <h3>Proactive Security Engineering</h3>
                             <p>Leading product security initiatives at Slack, focusing on proactive threat modeling, secure code review, and vulnerability assessment across enterprise communication platform serving millions of users.</p>
                             <div class="project-metrics">
-                                <span class="metric">3+ years experience</span>
+                                <span class="metric">5+ years experience</span>
                                 <span class="metric">Enterprise scale</span>
                                 <span class="metric">Proactive security</span>
                             </div>
@@ -1910,8 +1947,10 @@
                         <div class="project-content">
                             <h3>AI-Powered CI/CD Security Automation</h3>
                             <p>End-to-end pipeline automation integrating LLM-based code review, automated security gate enforcement, and AI-driven anomaly detection on build metrics. Reduces manual security review time while catching vulnerabilities before they reach production.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/hbhetaria2611">View Profile</a>
+                            <div class="project-metrics">
+                                <span class="metric">LLM code review</span>
+                                <span class="metric">CI/CD security gates</span>
+                                <span class="metric">Anomaly detection</span>
                             </div>
                         </div>
                     </div>
@@ -2041,15 +2080,18 @@ SgieuZtsuw==
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Knight's Home Lab. Built with passion and coffee ☕</p>
+            <p>&copy; 2026 Knight's Home Lab. Built with passion and coffee ☕</p>
             <p class="footer-hint">
-                🕵️ Security professionals: Press F12 and try some commands... | Double-click the logo for wisdom
+                🕵️ Security professionals: Press F12 and try some commands... | Double-click the logo for wisdom | Hidden flags await in the source
             </p>
              <div class="cf-turnstile" data-sitekey="0x4AAAAAAB3IBM-CKcjOxYnC" style="display: none;" id="turnstile-widget"></div>
         </div>
     </footer>
 
     <script>
+        // Respect the user's motion preference for all JS-driven effects
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         // Dark Mode Toggle Function
         function toggleDarkMode() {
             const body = document.body;
@@ -2090,7 +2132,7 @@ SgieuZtsuw==
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth',
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth',
                         block: 'start'
                     });
                 }
@@ -2107,6 +2149,7 @@ SgieuZtsuw==
                 details.classList.remove('expanded');
                 clickHint.textContent = 'Click to learn more →';
                 card.style.transform = '';
+                card.setAttribute('aria-expanded', 'false');
             } else {
                 // First, collapse any other expanded cards
                 document.querySelectorAll('.highlight-details.expanded').forEach(expandedDetail => {
@@ -2115,14 +2158,32 @@ SgieuZtsuw==
                     expandedDetail.classList.remove('expanded');
                     expandedHint.textContent = 'Click to learn more →';
                     expandedCard.style.transform = '';
+                    expandedCard.setAttribute('aria-expanded', 'false');
                 });
 
                 // Expand this card
                 details.classList.add('expanded');
                 clickHint.textContent = 'Click to collapse ↑';
                 card.style.transform = 'scale(1.02)';
+                card.setAttribute('aria-expanded', 'true');
             }
         }
+
+        // Make expandable cards keyboard-operable and mark decorative emoji
+        document.querySelectorAll('.clickable-card').forEach(card => {
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-expanded', 'false');
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleCardDetails(card);
+                }
+            });
+        });
+        document.querySelectorAll('.highlight-icon, .project-image').forEach(el => {
+            el.setAttribute('aria-hidden', 'true');
+        });
 
         // Scroll animation observer
         const observerOptions = {
@@ -2223,6 +2284,7 @@ SgieuZtsuw==
 
         // Initialize typing effect after page load
         window.addEventListener('load', () => {
+            if (prefersReducedMotion) return;
             const subtitle = document.querySelector('.hero .subtitle');
             const originalText = subtitle.textContent;
             setTimeout(() => {
@@ -2441,11 +2503,11 @@ SgieuZtsuw==
 
         // Initialize fun effects
         window.addEventListener('load', () => {
-            createParticles();
-
-            // Add event listeners
-            document.addEventListener('mousemove', createCursorTrail);
-            document.addEventListener('click', createClickEffect);
+            if (!prefersReducedMotion) {
+                createParticles();
+                document.addEventListener('mousemove', createCursorTrail);
+                document.addEventListener('click', createClickEffect);
+            }
             document.addEventListener('keydown', handleKonamiCode);
             document.querySelector('.logo').addEventListener('click', logoShakeEffect);
 
