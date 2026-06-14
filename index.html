@@ -1555,6 +1555,155 @@
                 display: none !important;
             }
         }
+        /* Zero-Day Tracker Widget */
+        .projects-subheading--red {
+            color: #ef4444;
+            border-bottom: 2px solid rgba(239, 68, 68, 0.35);
+            margin-top: 3rem;
+        }
+        body.dark-mode .projects-subheading--red {
+            color: #f87171;
+            border-bottom-color: rgba(248, 113, 113, 0.3);
+        }
+        .zero-day-widget {
+            background: linear-gradient(135deg, #1a0a1b 0%, #0f0a0f 100%);
+            border: 1.5px solid rgba(239, 68, 68, 0.35);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(239, 68, 68, 0.1), 0 1px 3px rgba(0,0,0,0.3);
+            transition: all 0.25s ease;
+        }
+        .zero-day-widget:hover {
+            border-color: rgba(239, 68, 68, 0.55);
+            box-shadow: 0 8px 32px rgba(239, 68, 68, 0.16), 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .tracker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(239, 68, 68, 0.18);
+            background: rgba(239, 68, 68, 0.04);
+        }
+        .tracker-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #e2e8f0;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #ef4444;
+            padding: 0.22rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: live-pulse 1.5s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        @keyframes live-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.35; transform: scale(0.65); }
+        }
+        .tracker-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #718096;
+            font-size: 0.75rem;
+        }
+        .tracker-refresh-btn {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #ef4444;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+        .tracker-refresh-btn:hover {
+            background: rgba(239, 68, 68, 0.18);
+            transform: rotate(180deg);
+        }
+        .zero-day-list { padding: 0.25rem 0; }
+        .zero-day-item {
+            padding: 0.8rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: background 0.15s ease;
+        }
+        .zero-day-item:last-child { border-bottom: none; }
+        .zero-day-item:hover { background: rgba(239, 68, 68, 0.04); }
+        .zero-day-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.28rem;
+            gap: 0.5rem;
+        }
+        .cve-id {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #10b981;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+        .cve-id:hover { color: #34d399; text-decoration: underline; }
+        .zero-day-date {
+            font-size: 0.7rem;
+            color: #4a5568;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: nowrap;
+        }
+        .zero-day-name {
+            font-size: 0.8rem;
+            color: #cbd5e0;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 0.18rem;
+        }
+        .zero-day-vendor { font-size: 0.7rem; color: #4a5568; }
+        .tracker-loading, .tracker-error {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: #4a5568;
+            font-size: 0.82rem;
+        }
+        .tracker-error a { color: #ef4444; }
+        .tracker-footer {
+            padding: 0.65rem 1.5rem;
+            border-top: 1px solid rgba(239, 68, 68, 0.12);
+            background: rgba(239, 68, 68, 0.02);
+            text-align: right;
+        }
+        .tracker-source-link {
+            font-size: 0.7rem;
+            color: #4a5568;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .tracker-source-link:hover { color: #ef4444; }
     </style>
 </head>
 <body>
@@ -1953,6 +2102,26 @@
                                 <span class="metric">Anomaly detection</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <h3 class="projects-subheading projects-subheading--red">🚨 Live Zero-Day Tracker</h3>
+                <div class="zero-day-widget">
+                    <div class="tracker-header">
+                        <div class="tracker-title">
+                            <span class="live-badge"><span class="live-dot"></span>LIVE</span>
+                            CISA Known Exploited Vulnerabilities
+                        </div>
+                        <div class="tracker-meta">
+                            <span id="tracker-update-time">Loading...</span>
+                            <button onclick="refreshZeroDayTracker()" class="tracker-refresh-btn" title="Refresh">↻</button>
+                        </div>
+                    </div>
+                    <div id="zero-day-list" class="zero-day-list">
+                        <div class="tracker-loading">⏳ Fetching latest vulnerabilities...</div>
+                    </div>
+                    <div class="tracker-footer">
+                        <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer" class="tracker-source-link">Source: CISA KEV Catalog →</a>
                     </div>
                 </div>
             </div>
@@ -2501,6 +2670,46 @@ SgieuZtsuw==
             }, 2000);
         }
 
+        function escHtml(str) {
+            const d = document.createElement('div');
+            d.textContent = String(str);
+            return d.innerHTML;
+        }
+
+        async function loadZeroDayTracker() {
+            const listEl = document.getElementById('zero-day-list');
+            const updateEl = document.getElementById('tracker-update-time');
+            if (!listEl) return;
+            try {
+                const res = await fetch('https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json', { cache: 'no-cache' });
+                if (!res.ok) throw new Error('Feed unavailable');
+                const data = await res.json();
+                const recent = [...data.vulnerabilities]
+                    .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded))
+                    .slice(0, 5);
+                listEl.innerHTML = recent.map(v => `
+                    <div class="zero-day-item">
+                        <div class="zero-day-item-header">
+                            <a href="https://nvd.nist.gov/vuln/detail/${escHtml(v.cveID)}" target="_blank" rel="noopener noreferrer" class="cve-id">${escHtml(v.cveID)}</a>
+                            <span class="zero-day-date">Added ${escHtml(v.dateAdded)}</span>
+                        </div>
+                        <div class="zero-day-name">${escHtml(v.vulnerabilityName)}</div>
+                        <div class="zero-day-vendor">${escHtml(v.vendorProject)} · ${escHtml(v.product)}</div>
+                    </div>
+                `).join('');
+                if (updateEl) updateEl.textContent = `Updated ${new Date().toLocaleTimeString()}`;
+            } catch (_) {
+                listEl.innerHTML = `<div class="tracker-error">Unable to fetch live feed — <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer">View on CISA →</a></div>`;
+                if (updateEl) updateEl.textContent = 'Update failed';
+            }
+        }
+
+        function refreshZeroDayTracker() {
+            const listEl = document.getElementById('zero-day-list');
+            if (listEl) listEl.innerHTML = '<div class="tracker-loading">⏳ Fetching latest vulnerabilities...</div>';
+            loadZeroDayTracker();
+        }
+
         // Initialize fun effects
         window.addEventListener('load', () => {
             if (!prefersReducedMotion) {
@@ -2536,6 +2745,9 @@ SgieuZtsuw==
             }, { threshold: 0.5 });
 
             projectCards.forEach(card => observer.observe(card));
+
+            loadZeroDayTracker();
+            setInterval(refreshZeroDayTracker, 5 * 60 * 1000);
 
             // Security Easter Eggs for the community! 🔐
 
