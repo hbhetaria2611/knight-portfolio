@@ -18,16 +18,16 @@ This is Knight's Portfolio & Homelab - a personal portfolio website for a securi
 ### Page Structure
 The site uses a single-page layout with smooth scrolling navigation:
 - **Header/Navigation**: Fixed 72px header (backdrop blur) with links to #home, #about, #projects, #writing, #contact, a theme toggle, and a "Résumé ↓" download button; a 3px scroll-progress bar spans the top edge
-- **Hero Section** (#home): Drifting grid-line background, eyebrow label, name, subhead, two CTAs, "verify resume checksum" copy link, and a 4-stat row
+- **Hero Section** (#home): Drifting grid-line background, eyebrow label, name, subhead, two CTAs, "verify resume checksum" copy link, a 4-stat row, and a right-column terminal-style "security-status.sh" card (desktop only; hidden below 780px)
 - **About Section** (#about): Sticky left rail (HB avatar tile with CISSP badge + vertical career timeline) beside a 7-row single-expand accordion of career/skill highlights, grouped skill pills, and a CISSP/Credly callout
-- **Projects Section** (#projects): "Professional Experience" cards (CASE 01-03 with metric pills) and "Personal Projects" cards (category tags with GitHub links)
-- **Writing Section** (#writing): Placeholder for future long-form posts ("First post in progress") — do not fabricate posts
+- **Projects Section** (#projects): "Professional Experience" cards (CASE 01-03 with metric pills) and "Personal Projects" cards (category tags with GitHub links); every card shows a row of mono tech-stack chips between the description and the pills/links
+- **Writing Section** (#writing): Three dimmed "In progress" topic-preview cards plus a status strip linking to LinkedIn — posts are previews only, do not fabricate published posts
 - **Contact Section** (#contact): Email (with copy button), LinkedIn, GitHub pills, and a PGP/GPG card with click-to-copy fingerprint, keyserver link, and `gpg --recv-keys` command
 
 ### Interactive Features Architecture
-- **Theme Toggle**: Light/dark mode via `data-theme` on `<html>`; defaults to `prefers-color-scheme`, persists in `localStorage`
+- **Theme Toggle**: Light/dark mode via `data-theme` on `<html>`; defaults to `prefers-color-scheme`, persists in `localStorage` under the `kl-theme` key
 - **Scroll Progress Bar**: Recomputed on scroll, also drives scroll-to-top button visibility (>5%)
-- **Accordion**: Single-expand pattern - clicking a row collapses others; chevron rotates 180°; details fade/slide in
+- **Accordion**: Single-expand pattern - clicking a row collapses others; the open row gets a 2px primary left accent bar and `--bg2` tint, the chevron rotates 180° and turns primary, rows highlight on hover, and pull-quotes sit in a left-ruled block
 - **Copy-to-Clipboard**: Email, GPG fingerprint, and resume SHA-256 checksum copy via `navigator.clipboard` with a bottom-center toast (~1.8s)
 - **Easter Eggs (toned down)**: Konami code (↑↑↓↓←→←→BA) and logo double-click both trigger an auto-dismissing "ACCESS GRANTED" card (~2.6s); a console greeting hints at it. Toggle all of this off via the `SHOW_EASTER_EGGS` flag in the script
 - **Responsive Nav**: Below 780px the nav collapses to a hamburger with a stacked link panel
