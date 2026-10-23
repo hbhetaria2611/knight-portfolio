@@ -527,6 +527,22 @@
         }
 
         /* About */
+        .about-intro {
+            max-width: 760px;
+            margin: -32px 0 56px;
+        }
+
+        .about-intro p {
+            color: var(--text2);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .about-intro p:last-child {
+            margin-bottom: 0;
+        }
+
         .about-grid {
             display: grid;
             grid-template-columns: minmax(220px, 300px) 1fr;
@@ -1414,6 +1430,12 @@
                 <div class="section-eyebrow">01 — ABOUT</div>
                 <h2 class="section-title">Building secure infrastructure, one system at a time.</h2>
 
+                <div class="about-intro">
+                    <p>I'm a Product Security Assurance engineer at Slack, which is part of Salesforce. I'm the security partner for Slack's Search and CRM product areas. That means I work with engineering teams before their features launch: I review designs, build threat models, find vulnerabilities and help the teams fix them.</p>
+                    <p>A lot of my work sits where search, AI and customer data overlap. So I spend a lot of time on questions like who should be able to see what in search results, and how AI features handle content they can't trust.</p>
+                    <p>I also build tools for my team. My main project is an internal bot that automates parts of our security review process, including intake, risk assessment and first drafts of threat models. It's built in Python on top of large language models. The point is to get engineers useful security feedback earlier, so reviewers can spend their time on the harder problems.</p>
+                </div>
+
                 <div class="about-grid">
                     <div class="about-rail">
                         <div class="avatar-tile">
@@ -1446,11 +1468,14 @@
                                     <span class="accordion-index">01</span>
                                     <span class="accordion-heading">
                                         <span class="accordion-title">Senior Product Security Engineer @ Slack</span>
-                                        <span class="accordion-blurb">Proactive threat modeling &amp; secure code review for millions of users.</span>
+                                        <span class="accordion-blurb">Security partner for Slack's Search &amp; CRM product areas.</span>
                                     </span>
                                     <span class="accordion-chevron" aria-hidden="true">⌄</span>
                                 </button>
                                 <div class="accordion-details" id="acc-details-1">
+                                    <div class="accordion-detail"><span class="dash">–</span><span>Product Security Assurance partner for Search and CRM: design reviews, threat models, and vulnerability findings before features launch</span></div>
+                                    <div class="accordion-detail"><span class="dash">–</span><span>Focus on where search, AI and customer data overlap: search result access control and how AI features handle untrusted content</span></div>
+                                    <div class="accordion-detail"><span class="dash">–</span><span>Built an internal Python + LLM bot that automates security review intake, risk assessment, and first-draft threat models</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Architecture reviews: helping teams design secure system architectures and identify risks</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Mobile security program: designed and implemented a comprehensive mobile security framework</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Incident response SME for security incidents</span></div>
@@ -1630,11 +1655,11 @@
                     <div class="project-card project-card--pro">
                         <div class="project-tag">CASE 01</div>
                         <h4>Proactive Security Engineering</h4>
-                        <p>Leading product security initiatives at Slack, focusing on proactive threat modeling, secure code review, and vulnerability assessment across an enterprise communication platform serving millions of users.</p>
+                        <p>Security partner for Slack's Search and CRM product areas, reviewing designs and building threat models before launch. Built an internal LLM-powered bot that automates security review intake, risk assessment, and first-draft threat models so engineers get feedback earlier.</p>
                         <div class="stack-chips">
                             <span class="stack-chip">Threat Modeling</span>
-                            <span class="stack-chip">SAST/DAST</span>
-                            <span class="stack-chip">AWS</span>
+                            <span class="stack-chip">AI Security</span>
+                            <span class="stack-chip">Python + LLMs</span>
                         </div>
                         <div class="project-metrics">
                             <span class="metric">5+ years experience</span>
