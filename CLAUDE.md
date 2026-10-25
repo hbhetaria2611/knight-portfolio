@@ -91,7 +91,7 @@ Professional cards use `project-card--pro`, a `CASE 0N` tag, and `<span class="m
 
 ### Current Featured Projects
 **Professional Experience Section:**
-- Senior Product Security Engineer @ Slack
+- Lead Product Security Engineer @ Slack
 - Security Engineer @ Amazon
 - Senior Security Consultant @ Synopsys
 
