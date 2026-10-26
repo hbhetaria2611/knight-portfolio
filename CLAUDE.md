@@ -9,11 +9,11 @@ This is Knight's Portfolio & Homelab - a personal portfolio website for a securi
 ## Architecture
 
 ### Single-File Architecture
-- **Complete Self-Contained Application**: Everything is in `index.html` (~2,220 lines)
+- **Complete Self-Contained Application**: Everything is in `index.html` (~2,250 lines), plus a few deploy-time files (`_headers`, `.well-known/security.txt`, `og-image.png`)
 - **Embedded Styles**: All CSS is within `<style>` tags in the HTML head
 - **Embedded JavaScript**: All interactivity handled by vanilla JavaScript in `<script>` tags
 - **No Build Process**: Direct deployment - open `index.html` in any browser
-- **Minimal External Dependencies**: Cloudflare Turnstile script for bot protection + Google Fonts (Space Grotesk, IBM Plex Sans, IBM Plex Mono) + a runtime `fetch` of the CISA KEV JSON feed for the zero-day tracker
+- **Minimal External Dependencies**: Google Fonts (Space Grotesk, IBM Plex Sans, IBM Plex Mono) + a runtime `fetch` of the CISA KEV JSON feed for the zero-day tracker
 
 ### Page Structure
 The site uses a single-page layout with smooth scrolling navigation:
@@ -28,7 +28,7 @@ The site uses a single-page layout with smooth scrolling navigation:
 - **Theme Toggle**: Light/dark mode via `data-theme` on `<html>`; defaults to `prefers-color-scheme`, persists in `localStorage` under the `kl-theme` key
 - **Scroll Progress Bar**: Recomputed on scroll, also drives scroll-to-top button visibility (>5%)
 - **Accordion**: Single-expand pattern - clicking a row collapses others; the open row gets a 2px primary left accent bar and `--bg2` tint, the chevron rotates 180° and turns primary, rows highlight on hover, and pull-quotes sit in a left-ruled block
-- **Copy-to-Clipboard**: Email, GPG fingerprint, and resume SHA-256 checksum copy via `navigator.clipboard` with a bottom-center toast (~1.8s)
+- **Copy-to-Clipboard**: Email, GPG fingerprint, and resume SHA-256 checksum copy via `navigator.clipboard` with a bottom-center toast (~1.8s). Buttons use `data-copy` / `data-copy-label` attributes wired up in the script; never use inline `onclick` handlers (the CSP blocks them)
 - **Easter Eggs (toned down)**: Konami code (↑↑↓↓←→←→BA) and logo double-click both trigger an auto-dismissing "ACCESS GRANTED" card (~2.6s); a console greeting hints at it. Toggle all of this off via the `SHOW_EASTER_EGGS` flag in the script
 - **Zero-Day Tracker**: `loadZeroDayTracker()` fetches the CISA Known Exploited Vulnerabilities catalog from CISA's GitHub mirror (`https://raw.githubusercontent.com/cisagov/kev-data/main/known_exploited_vulnerabilities.json`), sorts by `dateAdded`, renders the newest 5 with CVE IDs linking to NVD, and refreshes every 5 minutes plus a manual ↻ button. All feed fields go through `escHtml()` before being inserted. On failure it shows a "View on CISA" fallback. Do not switch back to the cisa.gov feed URL: it sends no CORS headers, so browsers block it. The catalog is ~1.8 MB per full load
 - **Responsive Nav**: Below 780px the nav collapses to a hamburger with a stacked link panel
@@ -50,6 +50,9 @@ This is an extremely simple project with minimal files:
 - `resume.pdf` - Downloadable resume (linked from header Résumé button)
 - `resume_src.html` - Source for the resume PDF
 - `github_profile_logo.svg` - Legacy logo asset (the header logo is now a CSS-rendered "HB" monogram tile)
+- `_headers` - Cloudflare Pages response headers: CSP, HSTS, X-Frame-Options, Referrer-Policy, Permissions-Policy, COOP
+- `.well-known/security.txt` - RFC 9116 vulnerability disclosure contact (email + PGP key). Its `Expires` date must be renewed before it passes (currently 2027-10-26)
+- `og-image.png` - 1200×630 social preview card referenced by `og:image` / `twitter:image`
 
 **No package.json, no build tools, no test frameworks, no linting tools, no dependencies.**
 
@@ -93,7 +96,7 @@ Professional cards use `project-card--pro`, a `CASE 0N` tag, and `<span class="m
 ### Current Featured Projects
 **Professional Experience Section:**
 - Lead Product Security Engineer @ Slack
-- Security Engineer @ Amazon
+- Security Engineer II @ Amazon Lab126
 - Senior Security Consultant @ Synopsys
 
 **Personal Projects Section:**
@@ -120,7 +123,7 @@ Skills are grouped into three pill lists (Security / Cloud & Infrastructure / De
 ## Important Technical Details
 
 ### Performance Considerations
-- **Single Request Loading**: All markup/styles/scripts inline; only fonts, Turnstile, and the KEV feed load externally
+- **Single Request Loading**: All markup/styles/scripts inline; only fonts and the KEV feed load externally
 - **CSS Transforms**: Hardware-accelerated animations for smooth performance
 - **Passive scroll listener** drives the progress bar, active-nav highlight, and scroll-to-top button
 
@@ -138,14 +141,20 @@ This is a cybersecurity professional's portfolio emphasizing:
 - **Reduced Motion**: `prefers-reduced-motion` disables animations and smooth scrolling
 
 ### Security Features
-- **Bot Protection**: Cloudflare Turnstile integration for bot detection and protection
-- **Content Security**: No external content dependencies beyond Turnstile, Google Fonts, and the CISA KEV feed (rendered as escaped text only)
+- **Security Headers**: Served from `_headers` by Cloudflare Pages. The CSP is `default-src 'none'` with explicit allowances: Google Fonts for styles and fonts, `raw.githubusercontent.com` for `connect-src`, and the single inline `<script>` allowed by its SHA-256 hash. No inline event handlers, `eval`, or third-party scripts are allowed
+- **CSP hash must be kept in sync**: any edit to the inline `<script>` block in `index.html` changes its hash, and the browser will then block the whole script (theme toggle, accordion, copy buttons, tracker). After every script edit, regenerate the hash and update `script-src` in `_headers`:
+  ```bash
+  python3 -c "import re,hashlib,base64;s=open('index.html',encoding='utf-8').read();b=re.findall(r'<script>(.*?)</script>',s,re.S);assert len(b)==1;print('sha256-'+base64.b64encode(hashlib.sha256(b[0].encode()).digest()).decode())"
+  ```
+  The `application/ld+json` block is data, not script, and needs no hash
+- **Content Security**: No external content dependencies beyond Google Fonts and the CISA KEV feed (rendered as escaped text only)
+- **Vulnerability Disclosure**: `/.well-known/security.txt` points to the contact email and PGP key
 - **PGP/GPG**: Contact section publishes the key fingerprint with a keyserver verification link
 
 ## Important Instructions
-- **Single File Architecture**: Do not create additional files - everything belongs in `index.html`
+- **Single File Architecture**: All page markup, CSS, and JS belongs in `index.html`. The only other deployed files are `_headers`, `.well-known/security.txt`, `og-image.png`, and the résumé; do not add more without asking
 - **No Build Process**: This is intentional - the site deploys by simply serving the HTML file
-- **External Dependencies**: Avoid adding more - only Cloudflare Turnstile, Google Fonts, and the CISA KEV feed (GitHub mirror) are acceptable
+- **External Dependencies**: Avoid adding more - only Google Fonts and the CISA KEV feed (GitHub mirror) are acceptable. Any new origin must also be added to the CSP in `_headers`
 - **Security Context**: This is a cybersecurity professional's portfolio; easter eggs are intentionally minimal (Konami code + logo double-click only)
 - **Content Accuracy**: All professional experience must match LinkedIn profile details exactly
 - **Resume Integration**: Portfolio includes a Résumé download button linking to `/resume.pdf`
