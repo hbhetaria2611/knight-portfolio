@@ -9,18 +9,18 @@ This is Knight's Portfolio & Homelab - a personal portfolio website for a securi
 ## Architecture
 
 ### Single-File Architecture
-- **Complete Self-Contained Application**: Everything is in `index.html` (~1,730 lines)
+- **Complete Self-Contained Application**: Everything is in `index.html` (~2,220 lines)
 - **Embedded Styles**: All CSS is within `<style>` tags in the HTML head
 - **Embedded JavaScript**: All interactivity handled by vanilla JavaScript in `<script>` tags
 - **No Build Process**: Direct deployment - open `index.html` in any browser
-- **Minimal External Dependencies**: Cloudflare Turnstile script for bot protection + Google Fonts (Space Grotesk, IBM Plex Sans, IBM Plex Mono)
+- **Minimal External Dependencies**: Cloudflare Turnstile script for bot protection + Google Fonts (Space Grotesk, IBM Plex Sans, IBM Plex Mono) + a runtime `fetch` of the CISA KEV JSON feed for the zero-day tracker
 
 ### Page Structure
 The site uses a single-page layout with smooth scrolling navigation:
 - **Header/Navigation**: Fixed 72px header (backdrop blur) with links to #home, #about, #projects, #writing, #contact, a theme toggle, and a "Résumé ↓" download button; a 3px scroll-progress bar spans the top edge
 - **Hero Section** (#home): Drifting grid-line background, eyebrow label, name, subhead, two CTAs, "verify resume checksum" copy link, a 4-stat row, and a right-column terminal-style "security-status.sh" card (desktop only; hidden below 780px)
 - **About Section** (#about): Sticky left rail (HB avatar tile with CISSP badge + vertical career timeline) beside a 7-row single-expand accordion of career/skill highlights, grouped skill pills, and a CISSP/Credly callout
-- **Projects Section** (#projects): "Professional Experience" cards (CASE 01-03 with metric pills) and "Personal Projects" cards (category tags with GitHub links); every card shows a row of mono tech-stack chips between the description and the pills/links
+- **Projects Section** (#projects): "Professional Experience" cards (CASE 01-03 with metric pills) and "Personal Projects" cards (category tags with GitHub links); every card shows a row of mono tech-stack chips between the description and the pills/links; below them a "Live Zero-Day Tracker" widget lists the 5 most recently added CISA KEV entries
 - **Writing Section** (#writing): Three dimmed "In progress" topic-preview cards plus a status strip linking to LinkedIn — posts are previews only, do not fabricate published posts
 - **Contact Section** (#contact): Email (with copy button), LinkedIn, GitHub pills, and a PGP/GPG card with click-to-copy fingerprint, keyserver link, and `gpg --recv-keys` command
 
@@ -30,6 +30,7 @@ The site uses a single-page layout with smooth scrolling navigation:
 - **Accordion**: Single-expand pattern - clicking a row collapses others; the open row gets a 2px primary left accent bar and `--bg2` tint, the chevron rotates 180° and turns primary, rows highlight on hover, and pull-quotes sit in a left-ruled block
 - **Copy-to-Clipboard**: Email, GPG fingerprint, and resume SHA-256 checksum copy via `navigator.clipboard` with a bottom-center toast (~1.8s)
 - **Easter Eggs (toned down)**: Konami code (↑↑↓↓←→←→BA) and logo double-click both trigger an auto-dismissing "ACCESS GRANTED" card (~2.6s); a console greeting hints at it. Toggle all of this off via the `SHOW_EASTER_EGGS` flag in the script
+- **Zero-Day Tracker**: `loadZeroDayTracker()` fetches the CISA Known Exploited Vulnerabilities catalog from CISA's GitHub mirror (`https://raw.githubusercontent.com/cisagov/kev-data/main/known_exploited_vulnerabilities.json`), sorts by `dateAdded`, renders the newest 5 with CVE IDs linking to NVD, and refreshes every 5 minutes plus a manual ↻ button. All feed fields go through `escHtml()` before being inserted. On failure it shows a "View on CISA" fallback. Do not switch back to the cisa.gov feed URL: it sends no CORS headers, so browsers block it. The catalog is ~1.8 MB per full load
 - **Responsive Nav**: Below 780px the nav collapses to a hamburger with a stacked link panel
 
 ### Color Scheme & Design System
@@ -38,7 +39,7 @@ The site uses a single-page layout with smooth scrolling navigation:
 - **Dark mode**: bg `#0E1116`, alt bg `#12161D`, surface `#161B22`, text `#E6E8EB`/`#B4B9C2`/`#7C8592`
 - All colors are CSS custom properties on `:root` / `html[data-theme="dark"]`
 - **Typography**: Space Grotesk (display/headings), IBM Plex Sans (body), IBM Plex Mono (labels, eyebrows, technical strings)
-- **Animation Library**: Custom keyframes (fadeUp, gridDrift, accessPop)
+- **Animation Library**: Custom keyframes (fadeUp, gridDrift, accessPop, live-pulse)
 
 ## File Structure
 
@@ -119,7 +120,7 @@ Skills are grouped into three pill lists (Security / Cloud & Infrastructure / De
 ## Important Technical Details
 
 ### Performance Considerations
-- **Single Request Loading**: All markup/styles/scripts inline; only fonts and Turnstile load externally
+- **Single Request Loading**: All markup/styles/scripts inline; only fonts, Turnstile, and the KEV feed load externally
 - **CSS Transforms**: Hardware-accelerated animations for smooth performance
 - **Passive scroll listener** drives the progress bar, active-nav highlight, and scroll-to-top button
 
@@ -138,13 +139,13 @@ This is a cybersecurity professional's portfolio emphasizing:
 
 ### Security Features
 - **Bot Protection**: Cloudflare Turnstile integration for bot detection and protection
-- **Content Security**: No external content dependencies beyond Turnstile and Google Fonts
+- **Content Security**: No external content dependencies beyond Turnstile, Google Fonts, and the CISA KEV feed (rendered as escaped text only)
 - **PGP/GPG**: Contact section publishes the key fingerprint with a keyserver verification link
 
 ## Important Instructions
 - **Single File Architecture**: Do not create additional files - everything belongs in `index.html`
 - **No Build Process**: This is intentional - the site deploys by simply serving the HTML file
-- **External Dependencies**: Avoid adding more - only Cloudflare Turnstile and Google Fonts are acceptable
+- **External Dependencies**: Avoid adding more - only Cloudflare Turnstile, Google Fonts, and the CISA KEV feed (GitHub mirror) are acceptable
 - **Security Context**: This is a cybersecurity professional's portfolio; easter eggs are intentionally minimal (Konami code + logo double-click only)
 - **Content Accuracy**: All professional experience must match LinkedIn profile details exactly
 - **Resume Integration**: Portfolio includes a Résumé download button linking to `/resume.pdf`
