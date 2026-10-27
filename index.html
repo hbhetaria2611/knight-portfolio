@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Turnstile only loads on proper domains, not local file:// URLs -->
-    <script>
-        if (window.location.protocol !== 'file:') {
-            const script = document.createElement('script');
-            script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
-            script.async = true;
-            script.defer = true;
-            document.head.appendChild(script);
-        }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Harsh Bhetaria, Lead Product Security Engineer with 10+ years in threat modeling, AppSec, and AI-powered security automation. CISSP certified.">
@@ -20,7 +10,13 @@
     <meta property="og:description" content="Security engineering portfolio: threat modeling, AppSec, DevSecOps, and AI-powered security automation. CISSP certified.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Knight's Lab">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:url" content="https://hnbhetaria.com/">
+    <meta property="og:image" content="https://hnbhetaria.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Harsh Bhetaria — Lead Product Security Engineer, CISSP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://hnbhetaria.com/og-image.png">
     <meta name="twitter:title" content="Harsh Bhetaria — Lead Product Security Engineer">
     <meta name="twitter:description" content="Security engineering portfolio: threat modeling, AppSec, DevSecOps, and AI-powered security automation. CISSP certified.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
@@ -28,6 +24,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <title>Harsh Bhetaria — Lead Product Security Engineer</title>
+    <link rel="canonical" href="https://hnbhetaria.com/">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Harsh Bhetaria",
+        "url": "https://hnbhetaria.com/",
+        "image": "https://hnbhetaria.com/og-image.png",
+        "jobTitle": "Lead Product Security Engineer",
+        "worksFor": { "@type": "Organization", "name": "Slack" },
+        "hasCredential": { "@type": "EducationalOccupationalCredential", "name": "CISSP" },
+        "sameAs": [
+            "https://www.linkedin.com/in/harsh-bhetaria/",
+            "https://github.com/hbhetaria2611"
+        ]
+    }
+    </script>
     <style>
         * {
             margin: 0;
@@ -1556,7 +1569,7 @@
                         <a href="#contact" class="btn-outline">Get In Touch</a>
                     </div>
                     <button class="checksum-link"
-                            onclick="copyText('7f6d68d09f5919a61166c48bac8ded50b536f6fbede26e6bbdc2379b5fabc26b', 'SHA-256 checksum')"
+                            data-copy="95bfd40b722b59d05556dc6f320d7fe1f078c7d9948960b2792f5b7f25612c9c" data-copy-label="SHA-256 checksum"
                             title="Copy the resume's SHA-256 checksum">🔐 verify resume checksum</button>
                 </div>
 
@@ -1606,7 +1619,7 @@
                 <div class="about-intro">
                     <p>I'm a Lead Product Security Engineer on the Product Security Assurance team at Slack, which is part of Salesforce. I'm the security partner for Slack's Search and CRM product areas. That means I work with engineering teams before their features launch: I review designs, build threat models, find vulnerabilities and help the teams fix them.</p>
                     <p>A lot of my work sits where search, AI and customer data overlap. So I spend a lot of time on questions like who should be able to see what in search results, and how AI features handle content they can't trust.</p>
-                    <p>I also build tools for my team. My main project is an internal bot that automates parts of our security review process, including intake, risk assessment and first drafts of threat models. It's built in Python on top of large language models. The point is to get engineers useful security feedback earlier, so reviewers can spend their time on the harder problems.</p>
+                    <p>I also build tools for my team. My main project is an internal bot that runs our security review pipeline from end to end. It rates services by risk, builds threat models automatically, reviews designs and code, and runs security testing with Burp Suite. It's built in Python on top of large language models. The point is to get engineers useful security feedback earlier, so reviewers can spend their time on the harder problems.</p>
                 </div>
 
                 <div class="about-grid">
@@ -1623,8 +1636,8 @@
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-year">June 2021 – May 2022</div>
-                                <div class="timeline-role">Security Engineer</div>
-                                <div class="timeline-company">Amazon</div>
+                                <div class="timeline-role">Security Engineer II</div>
+                                <div class="timeline-company">Amazon Lab126</div>
                             </div>
                             <div class="timeline-item">
                                 <div class="timeline-year">Aug 2015 – June 2021</div>
@@ -1648,7 +1661,7 @@
                                 <div class="accordion-details" id="acc-details-1">
                                     <div class="accordion-detail"><span class="dash">–</span><span>Product Security Assurance partner for Search and CRM: design reviews, threat models, and vulnerability findings before features launch</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Focus on where search, AI and customer data overlap: search result access control and how AI features handle untrusted content</span></div>
-                                    <div class="accordion-detail"><span class="dash">–</span><span>Built an internal Python + LLM bot that automates security review intake, risk assessment, and first-draft threat models</span></div>
+                                    <div class="accordion-detail"><span class="dash">–</span><span>Built an internal Python + LLM bot that runs the security review pipeline end to end: service risk rating, automated threat modeling, design and code review, and Burp Suite testing</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Architecture reviews: helping teams design secure system architectures and identify risks</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Mobile security program: designed and implemented a comprehensive mobile security framework</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Incident response SME for security incidents</span></div>
@@ -1663,17 +1676,19 @@
                                 <button class="accordion-toggle" aria-expanded="false" aria-controls="acc-details-2">
                                     <span class="accordion-index">02</span>
                                     <span class="accordion-heading">
-                                        <span class="accordion-title">Security Engineer @ Amazon</span>
-                                        <span class="accordion-blurb">Large-scale infrastructure security and cloud security architecture.</span>
+                                        <span class="accordion-title">Security Engineer II @ Amazon Lab126</span>
+                                        <span class="accordion-blurb">Device security for the Fire TV platform (50M+ users).</span>
                                     </span>
                                     <span class="accordion-chevron" aria-hidden="true">⌄</span>
                                 </button>
                                 <div class="accordion-details" id="acc-details-2">
+                                    <div class="accordion-detail"><span class="dash">–</span><span>Secured the Fire TV platform through threat modeling, architecture reviews, and IoT/embedded penetration testing</span></div>
+                                    <div class="accordion-detail"><span class="dash">–</span><span>Led Sev-1 incident response, reducing MTTR by 30%</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Designed a service priority framework to determine which services require security focus</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Incident response SME for security incidents</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Hands-on support during high-severity security incidents</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Designed new AuthN/AuthZ frameworks for product team adoption</span></div>
-                                    <div class="accordion-quote">Experience securing critical infrastructure serving millions of customers worldwide.</div>
+                                    <div class="accordion-quote">Device security for a consumer platform serving 50M+ users.</div>
                                 </div>
                             </div>
 
@@ -1687,7 +1702,7 @@
                                     <span class="accordion-chevron" aria-hidden="true">⌄</span>
                                 </button>
                                 <div class="accordion-details" id="acc-details-3">
-                                    <div class="accordion-detail"><span class="dash">–</span><span>Led a team of 5 security professionals</span></div>
+                                    <div class="accordion-detail"><span class="dash">–</span><span>Led a team of 5–8 consultants delivering 200+ application security assessments (web, mobile, API) for Fortune 500 clients</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Headed training initiatives for new hires and onboarding courses</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Conducted interviews as part of the recruiting team</span></div>
                                     <div class="accordion-detail"><span class="dash">–</span><span>Led a security practice within the organization</span></div>
@@ -1828,7 +1843,7 @@
                     <div class="project-card project-card--pro">
                         <div class="project-tag">CASE 01</div>
                         <h4>Proactive Security Engineering</h4>
-                        <p>Security partner for Slack's Search and CRM product areas, reviewing designs and building threat models before launch. Built an internal LLM-powered bot that automates security review intake, risk assessment, and first-draft threat models so engineers get feedback earlier.</p>
+                        <p>Security partner for Slack's Search and CRM product areas, reviewing designs and building threat models before launch. Built an internal LLM-powered bot that runs the full security review pipeline, from service risk rating and threat modeling to design review, code review, and Burp Suite testing, so engineers get feedback earlier.</p>
                         <div class="stack-chips">
                             <span class="stack-chip">Threat Modeling</span>
                             <span class="stack-chip">AI Security</span>
@@ -1940,7 +1955,7 @@
                         </div>
                         <div class="tracker-meta">
                             <span id="tracker-update-time">Loading...</span>
-                            <button onclick="refreshZeroDayTracker()" class="tracker-refresh-btn" title="Refresh" aria-label="Refresh zero-day tracker">↻</button>
+                            <button id="tracker-refresh" class="tracker-refresh-btn" title="Refresh" aria-label="Refresh zero-day tracker">↻</button>
                         </div>
                     </div>
                     <div id="zero-day-list" class="zero-day-list" aria-live="polite">
@@ -1993,7 +2008,7 @@
                 <div class="contact-links">
                     <div class="email-group">
                         <a href="mailto:harsh@mail.hnbhetaria.com" class="contact-pill">Email</a>
-                        <button class="copy-email-btn" onclick="copyText('harsh@mail.hnbhetaria.com', 'Email')" title="Copy email address" aria-label="Copy email address">⧉</button>
+                        <button class="copy-email-btn" data-copy="harsh@mail.hnbhetaria.com" data-copy-label="Email" title="Copy email address" aria-label="Copy email address">⧉</button>
                     </div>
                     <a href="https://www.linkedin.com/in/harsh-bhetaria/" target="_blank" rel="noopener" class="contact-pill">LinkedIn ↗</a>
                     <a href="https://github.com/hbhetaria2611" target="_blank" rel="noopener" class="contact-pill">GitHub ↗</a>
@@ -2002,7 +2017,7 @@
                 <div class="gpg-card">
                     <div class="gpg-card-title">PGP / GPG Public Key</div>
                     <button class="gpg-fingerprint"
-                            onclick="copyText('1BCF 4D18 E05A F929 399A C0D3 CBAA B1F5 DCAD E586', 'Fingerprint')"
+                            data-copy="1BCF 4D18 E05A F929 399A C0D3 CBAA B1F5 DCAD E586" data-copy-label="Fingerprint"
                             title="Click to copy fingerprint">1BCF 4D18 E05A F929 399A C0D3 CBAA B1F5 DCAD E586</button>
                     <div class="gpg-actions">
                         <a href="https://keys.openpgp.org/search?q=1BCF4D18E05AF929399AC0D3CBAAB1F5DCADE586" target="_blank" rel="noopener" class="gpg-keyserver-link">Verify on Keyserver ↗</a>
@@ -2015,7 +2030,6 @@
 
     <footer>
         <p>&copy; 2026 Knight's Home Lab. Built with passion and coffee.</p>
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAB3IBM-CKcjOxYnC" style="display: none;" id="turnstile-widget"></div>
     </footer>
 
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
@@ -2210,14 +2224,35 @@
             loadZeroDayTracker();
         }
 
-        loadZeroDayTracker();
-        setInterval(refreshZeroDayTracker, 5 * 60 * 1000);
-
-        // ---------- Turnstile (proper domains only) ----------
-        if (window.location.protocol !== 'file:') {
-            const turnstileWidget = document.getElementById('turnstile-widget');
-            if (turnstileWidget) turnstileWidget.style.display = 'block';
+        // Fetch only once the widget is near the viewport, and skip refreshes while the tab is hidden
+        const trackerWidget = document.querySelector('.zero-day-widget');
+        if (trackerWidget) {
+            let trackerStarted = false;
+            const startTracker = () => {
+                if (trackerStarted) return;
+                trackerStarted = true;
+                loadZeroDayTracker();
+                setInterval(() => {
+                    if (document.visibilityState === 'visible') refreshZeroDayTracker();
+                }, 5 * 60 * 1000);
+            };
+            if ('IntersectionObserver' in window) {
+                const trackerObserver = new IntersectionObserver(entries => {
+                    if (entries.some(e => e.isIntersecting)) {
+                        trackerObserver.disconnect();
+                        startTracker();
+                    }
+                }, { rootMargin: '400px' });
+                trackerObserver.observe(trackerWidget);
+            } else {
+                startTracker();
+            }
         }
+        document.getElementById('tracker-refresh')?.addEventListener('click', refreshZeroDayTracker);
+
+        document.querySelectorAll('[data-copy]').forEach(el => {
+            el.addEventListener('click', () => copyText(el.dataset.copy, el.dataset.copyLabel));
+        });
     </script>
 </body>
 </html>
